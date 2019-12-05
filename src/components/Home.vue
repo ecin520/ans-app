@@ -1,29 +1,57 @@
 <template>
-  <div class="home">
-    <mu-container style="width: 100%;position: fixed;bottom: 0;">
-      <mu-bottom-nav>
-        <mu-bottom-nav-item title="Recents" icon="restore"></mu-bottom-nav-item>
-        <mu-bottom-nav-item title="Favorites" icon="favorite"></mu-bottom-nav-item>
-        <mu-bottom-nav-item title="Nearby" icon="location_on"></mu-bottom-nav-item>
-        <mu-bottom-nav-item title="Nearby" icon="location_on"></mu-bottom-nav-item>
-      </mu-bottom-nav>
-    </mu-container>
-  </div>
+    <div class="home">
+        <div class="content">
+            <router-view></router-view>
+        </div>
+
+        <div class="bottom-nav">
+            <mu-bottom-nav @change="bottomNavClick" ripple color="#ba68c8">
+                <mu-bottom-nav-item value="Home" title="Home" icon="pets"></mu-bottom-nav-item>
+                <mu-bottom-nav-item value="Contest" title="Contest" icon="favorite"></mu-bottom-nav-item>
+                <mu-bottom-nav-item value="Chat" title="Chat" icon="location_on"></mu-bottom-nav-item>
+                <mu-bottom-nav-item value="Setting" title="Setting" icon="location_on"></mu-bottom-nav-item>
+            </mu-bottom-nav>
+        </div>
+
+    </div>
 </template>
 
 <script>
-export default {
-  data () {
-    return {
-
+    export default {
+        data() {
+            return {}
+        },
+        methods: {
+            bottomNavClick(value) {
+                switch (value) {
+                    case 'Home':
+                        this.$router.push({name: 'HomePage'})
+                        break;
+                    case 'Contest':
+                        break;
+                    case 'Chat':
+                      this.$router.push({name: 'ChatPage'})
+                        break;
+                    case 'Setting':
+                        break;
+                }
+            }
+        },
+        mounted() {
+            this.$router.push({name: 'HomePage'})
+        }
     }
-  }
-}
 </script>
 
 
 <style scoped>
-  .home {
-    color: #8CC7B5;
-  }
+    .home {
+        color: #8CC7B5;
+    }
+
+    .bottom-nav {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
 </style>
