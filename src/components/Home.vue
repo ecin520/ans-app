@@ -1,34 +1,29 @@
 <template>
   <div class="home">
-    <h1>Home</h1>
+    <mu-container style="width: 100%;position: fixed;bottom: 0;">
+      <mu-bottom-nav>
+        <mu-bottom-nav-item title="Recents" icon="restore"></mu-bottom-nav-item>
+        <mu-bottom-nav-item title="Favorites" icon="favorite"></mu-bottom-nav-item>
+        <mu-bottom-nav-item title="Nearby" icon="location_on"></mu-bottom-nav-item>
+        <mu-bottom-nav-item title="Nearby" icon="location_on"></mu-bottom-nav-item>
+      </mu-bottom-nav>
+    </mu-container>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+
     }
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+
 <style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+  .home {
+    color: #8CC7B5;
+  }
 </style>
