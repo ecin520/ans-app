@@ -59,7 +59,7 @@
                     </mu-button>
                 </mu-col>
             </mu-row>
-            <br><br><br><br><br><br>
+            <br><br><br>
         </div>
 
     </div>

@@ -6,8 +6,8 @@
             出题人排行榜
         </mu-button>
 
-        <mu-list v-for="(item, index) in user">
-            <mu-list-item button>
+        <mu-list>
+            <mu-list-item button v-for="(item, index) in user">
                 <h3>{{index+1}}&nbsp;</h3>
                 <mu-list-item-action>
                     <mu-avatar size="38">
@@ -37,6 +37,226 @@
                         'nickname': '易小凡',
                         'avatar_url': 'https://muse-ui.org/img/uicon.ac3913bf.jpg',
                         question_num: 153
+                    },
+                    {
+                        'nickname': '易小凡',
+                        'avatar_url': 'http://148.70.50.70/source/1573193343018.jpg',
+                        question_num: 63
+                    },
+                    {
+                        'nickname': '易小凡',
+                        'avatar_url': 'http://148.70.50.70/source/1569489728895.jpg',
+                        question_num: 53
+                    },
+                    {
+                        'nickname': '易小凡',
+                        'avatar_url': 'https://muse-ui.org/img/uicon.ac3913bf.jpg',
+                        question_num: 23
+                    },
+                    {
+                        'nickname': '易小凡',
+                        'avatar_url': 'https://muse-ui.org/img/uicon.ac3913bf.jpg',
+                        question_num: 13
+                    },
+                    {
+                        'nickname': '易小凡',
+                        'avatar_url': 'http://148.70.50.70/source/1573193343018.jpg',
+                        question_num: 63
+                    },
+                    {
+                        'nickname': '易小凡',
+                        'avatar_url': 'http://148.70.50.70/source/1569489728895.jpg',
+                        question_num: 53
+                    },
+                    {
+                        'nickname': '易小凡',
+                        'avatar_url': 'https://muse-ui.org/img/uicon.ac3913bf.jpg',
+                        question_num: 23
+                    },
+                    {
+                        'nickname': '易小凡',
+                        'avatar_url': 'https://muse-ui.org/img/uicon.ac3913bf.jpg',
+                        question_num: 13
+                    },
+                    {
+                        'nickname': '易小凡',
+                        'avatar_url': 'http://148.70.50.70/source/1573193343018.jpg',
+                        question_num: 63
+                    },
+                    {
+                        'nickname': '易小凡',
+                        'avatar_url': 'http://148.70.50.70/source/1569489728895.jpg',
+                        question_num: 53
+                    },
+                    {
+                        'nickname': '易小凡',
+                        'avatar_url': 'https://muse-ui.org/img/uicon.ac3913bf.jpg',
+                        question_num: 23
+                    },
+                    {
+                        'nickname': '易小凡',
+                        'avatar_url': 'https://muse-ui.org/img/uicon.ac3913bf.jpg',
+                        question_num: 13
+                    },
+                    {
+                        'nickname': '易小凡',
+                        'avatar_url': 'http://148.70.50.70/source/1573193343018.jpg',
+                        question_num: 63
+                    },
+                    {
+                        'nickname': '易小凡',
+                        'avatar_url': 'http://148.70.50.70/source/1569489728895.jpg',
+                        question_num: 53
+                    },
+                    {
+                        'nickname': '易小凡',
+                        'avatar_url': 'https://muse-ui.org/img/uicon.ac3913bf.jpg',
+                        question_num: 23
+                    },
+                    {
+                        'nickname': '易小凡',
+                        'avatar_url': 'https://muse-ui.org/img/uicon.ac3913bf.jpg',
+                        question_num: 13
+                    },
+                    {
+                        'nickname': '易小凡',
+                        'avatar_url': 'http://148.70.50.70/source/1573193343018.jpg',
+                        question_num: 63
+                    },
+                    {
+                        'nickname': '易小凡',
+                        'avatar_url': 'http://148.70.50.70/source/1569489728895.jpg',
+                        question_num: 53
+                    },
+                    {
+                        'nickname': '易小凡',
+                        'avatar_url': 'https://muse-ui.org/img/uicon.ac3913bf.jpg',
+                        question_num: 23
+                    },
+                    {
+                        'nickname': '易小凡',
+                        'avatar_url': 'https://muse-ui.org/img/uicon.ac3913bf.jpg',
+                        question_num: 13
+                    },
+                    {
+                        'nickname': '易小凡',
+                        'avatar_url': 'http://148.70.50.70/source/1573193343018.jpg',
+                        question_num: 63
+                    },
+                    {
+                        'nickname': '易小凡',
+                        'avatar_url': 'http://148.70.50.70/source/1569489728895.jpg',
+                        question_num: 53
+                    },
+                    {
+                        'nickname': '易小凡',
+                        'avatar_url': 'https://muse-ui.org/img/uicon.ac3913bf.jpg',
+                        question_num: 23
+                    },
+                    {
+                        'nickname': '易小凡',
+                        'avatar_url': 'https://muse-ui.org/img/uicon.ac3913bf.jpg',
+                        question_num: 13
+                    },
+                    {
+                        'nickname': '易小凡',
+                        'avatar_url': 'http://148.70.50.70/source/1573193343018.jpg',
+                        question_num: 63
+                    },
+                    {
+                        'nickname': '易小凡',
+                        'avatar_url': 'http://148.70.50.70/source/1569489728895.jpg',
+                        question_num: 53
+                    },
+                    {
+                        'nickname': '易小凡',
+                        'avatar_url': 'https://muse-ui.org/img/uicon.ac3913bf.jpg',
+                        question_num: 23
+                    },
+                    {
+                        'nickname': '易小凡',
+                        'avatar_url': 'https://muse-ui.org/img/uicon.ac3913bf.jpg',
+                        question_num: 13
+                    },
+                    {
+                        'nickname': '易小凡',
+                        'avatar_url': 'http://148.70.50.70/source/1573193343018.jpg',
+                        question_num: 63
+                    },
+                    {
+                        'nickname': '易小凡',
+                        'avatar_url': 'http://148.70.50.70/source/1569489728895.jpg',
+                        question_num: 53
+                    },
+                    {
+                        'nickname': '易小凡',
+                        'avatar_url': 'https://muse-ui.org/img/uicon.ac3913bf.jpg',
+                        question_num: 23
+                    },
+                    {
+                        'nickname': '易小凡',
+                        'avatar_url': 'https://muse-ui.org/img/uicon.ac3913bf.jpg',
+                        question_num: 13
+                    },
+                    {
+                        'nickname': '易小凡',
+                        'avatar_url': 'http://148.70.50.70/source/1573193343018.jpg',
+                        question_num: 63
+                    },
+                    {
+                        'nickname': '易小凡',
+                        'avatar_url': 'http://148.70.50.70/source/1569489728895.jpg',
+                        question_num: 53
+                    },
+                    {
+                        'nickname': '易小凡',
+                        'avatar_url': 'https://muse-ui.org/img/uicon.ac3913bf.jpg',
+                        question_num: 23
+                    },
+                    {
+                        'nickname': '易小凡',
+                        'avatar_url': 'https://muse-ui.org/img/uicon.ac3913bf.jpg',
+                        question_num: 13
+                    },
+                    {
+                        'nickname': '易小凡',
+                        'avatar_url': 'http://148.70.50.70/source/1573193343018.jpg',
+                        question_num: 63
+                    },
+                    {
+                        'nickname': '易小凡',
+                        'avatar_url': 'http://148.70.50.70/source/1569489728895.jpg',
+                        question_num: 53
+                    },
+                    {
+                        'nickname': '易小凡',
+                        'avatar_url': 'https://muse-ui.org/img/uicon.ac3913bf.jpg',
+                        question_num: 23
+                    },
+                    {
+                        'nickname': '易小凡',
+                        'avatar_url': 'https://muse-ui.org/img/uicon.ac3913bf.jpg',
+                        question_num: 13
+                    },
+                    {
+                        'nickname': '易小凡',
+                        'avatar_url': 'http://148.70.50.70/source/1573193343018.jpg',
+                        question_num: 63
+                    },
+                    {
+                        'nickname': '易小凡',
+                        'avatar_url': 'http://148.70.50.70/source/1569489728895.jpg',
+                        question_num: 53
+                    },
+                    {
+                        'nickname': '易小凡',
+                        'avatar_url': 'https://muse-ui.org/img/uicon.ac3913bf.jpg',
+                        question_num: 23
+                    },
+                    {
+                        'nickname': '易小凡',
+                        'avatar_url': 'https://muse-ui.org/img/uicon.ac3913bf.jpg',
+                        question_num: 13
                     },
                     {
                         'nickname': '易小凡',

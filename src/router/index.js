@@ -10,6 +10,7 @@ import ContestPage from "../components/contest/ContestPage";
 import ChatPage from "../components/chat/ChatPage";
 
 
+
 Vue.use(Router);
 
 export default new Router({

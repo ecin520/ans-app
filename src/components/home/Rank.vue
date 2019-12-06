@@ -5,8 +5,8 @@
             答题天梯排行榜
         </mu-button>
 
-        <mu-list v-for="(item, index) in user">
-            <mu-list-item button>
+        <mu-list>
+            <mu-list-item button v-for="(item, index) in user">
                 <h3>{{index+1}}&nbsp;</h3>
                 <mu-list-item-action>
                     <mu-avatar size="38">
