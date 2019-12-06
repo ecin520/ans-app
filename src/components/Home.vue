@@ -25,12 +25,13 @@
             bottomNavClick(value) {
                 switch (value) {
                     case 'Home':
-                        this.$router.push({name: 'HomePage'})
+                        this.$router.push({name: 'HomePage'});
                         break;
                     case 'Contest':
+                        this.$router.push({name: 'ContestPage'})
                         break;
                     case 'Chat':
-                      this.$router.push({name: 'ChatPage'})
+                      this.$router.push({name: 'ChatPage'});
                         break;
                     case 'Setting':
                         break;

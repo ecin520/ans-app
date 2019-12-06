@@ -6,6 +6,7 @@ import Register from "../components/basic/Register";
 
 import Home from "../components/Home";
 import HomePage from "../components/home/HomePage";
+import ContestPage from "../components/contest/ContestPage";
 import ChatPage from "../components/chat/ChatPage";
 
 
@@ -27,6 +28,11 @@ export default new Router({
                     path: '/ChatPage',
                     name: 'ChatPage',
                     component: ChatPage
+                },
+                {
+                    path: '/ContestPage',
+                    name: 'ContestPage',
+                    component: ContestPage
                 }
             ]
         },

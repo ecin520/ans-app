@@ -7,7 +7,9 @@ import MuseUI from 'muse-ui';
 import 'muse-ui/dist/muse-ui.css';
 import Toast from 'muse-ui-toast';
 import axios from 'axios'
+import animate from 'animate.css'
 
+Vue.use(animate);
 Vue.use(Toast);
 Vue.use(MuseUI);
 
