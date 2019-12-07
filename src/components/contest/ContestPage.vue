@@ -9,7 +9,8 @@
             </mu-appbar>
             <mu-tabs color="#ba68c8" indicator-color="#ba68c8" full-width>
                 <mu-tab>
-                    <mu-icon value="wb_sunny"></mu-icon>
+<!--                    <mu-icon value="line_style"></mu-icon>-->
+<!--                    Make your choice-->
                 </mu-tab>
             </mu-tabs>
 
@@ -23,7 +24,7 @@
 
         <div style="margin: 8px;height: 250px;padding: 8px;">
             <mu-row>
-                <h2>书山有路勤为径</h2>
+<!--                <h2>书山有路勤为径</h2>-->
             </mu-row>
             <mu-row>
                 <mu-col span="6">
@@ -42,7 +43,7 @@
             </mu-row>
             <br><br>
             <mu-row>
-                <h2>学海无涯苦作舟</h2>
+<!--                <h2>学海无涯苦作舟</h2>-->
             </mu-row>
             <mu-row>
                 <mu-col span="6">

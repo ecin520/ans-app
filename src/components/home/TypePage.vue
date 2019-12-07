@@ -1,8 +1,9 @@
 <template>
     <div class="type">
-        <mu-card-media title="新主题来袭" sub-title="全新类型-全能百科，成为一个全能小王子。">
-            <img style="" @click="picClick" src="@/assets/pic1.jpg">
+        <mu-card-media style="margin-top: -1px;" title="新主题来袭" sub-title="全新类型-全能百科，成为一个全能小王子。">
+            <img style="" @click="picClick" src="@/assets/dog.gif">
         </mu-card-media>
+
 
 
         <div class="recent">
@@ -14,7 +15,7 @@
                     </mu-button>
                 </mu-col>
                 <mu-col span="4">
-                    <mu-button color="#40c4ff" style="width: 90%;margin: 5px;font-size: smaller;">全能打百科</mu-button>
+                    <mu-button @click="sheetUp" color="#40c4ff" style="width: 90%;margin: 5px;font-size: smaller;">全能打百科</mu-button>
                     <br>
                     <mu-button color="#40c4ff" style="width: 90%;margin: 5px;font-size: smaller;">全能百科</mu-button>
                 </mu-col>
@@ -69,34 +70,43 @@
         </div>
 
         <h2>&nbsp;所有分类 (15)</h2>
+        <h3>&nbsp;综合</h3>
         <mu-row style="margin: 5px">
-            <mu-col span="4">
-                <mu-button style="width: 90%;margin: 5px" color="#ffa2bf">Secondary</mu-button>
-            </mu-col>
-            <mu-col span="4">
-                <mu-button style="width: 90%;margin: 5px" color="#ffa2bf">Secondary</mu-button>
-            </mu-col>
-            <mu-col span="4">
-                <mu-button style="width: 90%;margin: 5px" color="#ffa2bf">Secondary</mu-button>
-            </mu-col>
+            <mu-col span="4"><mu-button style="width: 90%;margin: 5px" color="#ffa2bf">Secondary</mu-button></mu-col>
+            <mu-col span="4"><mu-button style="width: 90%;margin: 5px" color="#ffa2bf">Secondary</mu-button></mu-col>
+            <mu-col span="4"><mu-button style="width: 90%;margin: 5px" color="#ffa2bf">Secondary</mu-button></mu-col>
         </mu-row>
         <mu-row style="margin: 5px">
-            <mu-col span="4">
-                <mu-button style="width: 90%;margin: 5px" color="#ffa2bf">Secondary</mu-button>
-            </mu-col>
-            <mu-col span="4">
-                <mu-button style="width: 90%;margin: 5px" color="#ffa2bf">Secondary</mu-button>
-            </mu-col>
-            <mu-col span="4">
-                <mu-button style="width: 90%;margin: 5px" color="#ffa2bf">Secondary</mu-button>
-            </mu-col>
+            <mu-col span="4"><mu-button style="width: 90%;margin: 5px" color="#ffa2bf">Secondary</mu-button></mu-col>
+            <mu-col span="4"><mu-button style="width: 90%;margin: 5px" color="#ffa2bf">Secondary</mu-button></mu-col>
+            <mu-col span="4"><mu-button style="width: 90%;margin: 5px" color="#ffa2bf">Secondary</mu-button></mu-col>
+        </mu-row>
+
+        <h3>&nbsp;教育</h3>
+        <mu-row style="margin: 5px">
+            <mu-col span="4"><mu-button style="width: 90%;margin: 5px" color="#ffa000">Secondary</mu-button></mu-col>
+            <mu-col span="4"><mu-button style="width: 90%;margin: 5px" color="#ffa000">Secondary</mu-button></mu-col>
+            <mu-col span="4"><mu-button style="width: 90%;margin: 5px" color="#ffa000">Secondary</mu-button></mu-col>
+        </mu-row>
+        <mu-row style="margin: 5px">
+            <mu-col span="4"><mu-button style="width: 90%;margin: 5px" color="#ffa000">Secondary</mu-button></mu-col>
+            <mu-col span="4"><mu-button style="width: 90%;margin: 5px" color="#ffa000">Secondary</mu-button></mu-col>
+            <mu-col span="4"><mu-button style="width: 90%;margin: 5px" color="#ffa000">Secondary</mu-button></mu-col>
         </mu-row>
     </div>
 </template>
 
 <script>
     export default {
-        name: "TypePage"
+        name: "TypePage",
+        data() {
+            return {
+                sheet: false
+            }
+        },
+        methods: {
+
+        }
     }
 </script>
 

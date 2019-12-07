@@ -1,6 +1,6 @@
 <template>
     <div class="rank">
-        <mu-button color="#ba68c8" large full-width style="text-align: center;font-size: 20px;">
+        <mu-button color="#ba68c8" large full-width style="text-align: center;font-size: 20px;margin-top: -5px;">
             <mu-icon value="face"></mu-icon>
             答题天梯排行榜
         </mu-button>

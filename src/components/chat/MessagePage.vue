@@ -4,7 +4,7 @@
       <br><br><br><br><br>
       <mu-list>
         <div class="list-item" v-for="(item, index) in messageList">
-          <mu-list-item avatar button @click="fuck(item.friendName)">
+          <mu-list-item avatar button @click="messageClick(item.friendName)">
             <mu-list-item-action>
               <mu-avatar>
                 <img  :src="item.avatarUrl"/>
@@ -58,34 +58,15 @@
                         friendName: 'Fucker',
                         shortMessage: '晚上去网吧吗',
                         badgeCount: 1
-                    },
-                    {
-                        avatarUrl: 'https://muse-ui.org/img/uicon.ac3913bf.jpg',
-                        friendName: 'Mike',
-                        shortMessage: '昨天的100什么时候还',
-                        badgeCount: 1
-                    },
-                    {
-                        avatarUrl: 'https://i.loli.net/2017/08/21/599a521472424.jpg',
-                        friendName: 'Fucker',
-                        shortMessage: '晚上去网吧吗',
-                        badgeCount: 1
-                    },
-                    {
-                        avatarUrl: 'https://muse-ui.org/img/uicon.ac3913bf.jpg',
-                        friendName: 'Mike',
-                        shortMessage: '昨天的100什么时候还',
-                        badgeCount: 1
-                    },
-                    {
-                        avatarUrl: 'https://i.loli.net/2017/08/21/599a521472424.jpg',
-                        friendName: 'Fucker',
-                        shortMessage: '晚上去网吧吗',
-                        badgeCount: 1
                     }
                 ]
             }
-        }
+        },
+      methods: {
+        messageClick(friendName) {
+            this.$router.push({path: 'ChatPageSingle'});
+          }
+      }
     }
 </script>
 

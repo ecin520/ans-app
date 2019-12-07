@@ -9,7 +9,7 @@ import HomePage from "../components/home/HomePage";
 import ContestPage from "../components/contest/ContestPage";
 import ChatPage from "../components/chat/ChatPage";
 
-
+import ChatPageSingle from "../components/single/ChatPageSingle";
 
 Vue.use(Router);
 
@@ -46,6 +46,11 @@ export default new Router({
             path: '/Register',
             name: 'Register',
             component: Register
+        },
+        {
+            path: '/ChatPageSingle',
+            name: 'ChatPageSingle',
+            component: ChatPageSingle
         }
     ]
 })
