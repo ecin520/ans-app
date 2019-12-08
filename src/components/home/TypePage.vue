@@ -5,17 +5,17 @@
         </mu-card-media>
 
 
-
         <div class="recent">
             <mu-row>
                 <mu-col span="4">
                     <mu-button style="width: 95%;height: 82px;color: #fff6fc;margin: 5px;" color="#fbc02d">
-
                         最近在玩
                     </mu-button>
                 </mu-col>
                 <mu-col span="4">
-                    <mu-button @click="sheetUp" color="#40c4ff" style="width: 90%;margin: 5px;font-size: smaller;">全能打百科</mu-button>
+                    <mu-button @click="startDialogClick" color="#40c4ff"
+                               style="width: 90%;margin: 5px;font-size: smaller;">全能打百科
+                    </mu-button>
                     <br>
                     <mu-button color="#40c4ff" style="width: 90%;margin: 5px;font-size: smaller;">全能百科</mu-button>
                 </mu-col>
@@ -72,27 +72,54 @@
         <h2>&nbsp;所有分类 (15)</h2>
         <h3>&nbsp;综合</h3>
         <mu-row style="margin: 5px">
-            <mu-col span="4"><mu-button style="width: 90%;margin: 5px" color="#ffa2bf">Secondary</mu-button></mu-col>
-            <mu-col span="4"><mu-button style="width: 90%;margin: 5px" color="#ffa2bf">Secondary</mu-button></mu-col>
-            <mu-col span="4"><mu-button style="width: 90%;margin: 5px" color="#ffa2bf">Secondary</mu-button></mu-col>
+            <mu-col span="4">
+                <mu-button style="width: 90%;margin: 5px" color="#ffa2bf">Secondary</mu-button>
+            </mu-col>
+            <mu-col span="4">
+                <mu-button style="width: 90%;margin: 5px" color="#ffa2bf">Secondary</mu-button>
+            </mu-col>
+            <mu-col span="4">
+                <mu-button style="width: 90%;margin: 5px" color="#ffa2bf">Secondary</mu-button>
+            </mu-col>
         </mu-row>
         <mu-row style="margin: 5px">
-            <mu-col span="4"><mu-button style="width: 90%;margin: 5px" color="#ffa2bf">Secondary</mu-button></mu-col>
-            <mu-col span="4"><mu-button style="width: 90%;margin: 5px" color="#ffa2bf">Secondary</mu-button></mu-col>
-            <mu-col span="4"><mu-button style="width: 90%;margin: 5px" color="#ffa2bf">Secondary</mu-button></mu-col>
+            <mu-col span="4">
+                <mu-button style="width: 90%;margin: 5px" color="#ffa2bf">Secondary</mu-button>
+            </mu-col>
+            <mu-col span="4">
+                <mu-button style="width: 90%;margin: 5px" color="#ffa2bf">Secondary</mu-button>
+            </mu-col>
+            <mu-col span="4">
+                <mu-button style="width: 90%;margin: 5px" color="#ffa2bf">Secondary</mu-button>
+            </mu-col>
         </mu-row>
 
         <h3>&nbsp;教育</h3>
         <mu-row style="margin: 5px">
-            <mu-col span="4"><mu-button style="width: 90%;margin: 5px" color="#ffa000">Secondary</mu-button></mu-col>
-            <mu-col span="4"><mu-button style="width: 90%;margin: 5px" color="#ffa000">Secondary</mu-button></mu-col>
-            <mu-col span="4"><mu-button style="width: 90%;margin: 5px" color="#ffa000">Secondary</mu-button></mu-col>
+            <mu-col span="4">
+                <mu-button style="width: 90%;margin: 5px" color="#ffa000">Secondary</mu-button>
+            </mu-col>
+            <mu-col span="4">
+                <mu-button style="width: 90%;margin: 5px" color="#ffa000">Secondary</mu-button>
+            </mu-col>
+            <mu-col span="4">
+                <mu-button style="width: 90%;margin: 5px" color="#ffa000">Secondary</mu-button>
+            </mu-col>
         </mu-row>
         <mu-row style="margin: 5px">
-            <mu-col span="4"><mu-button style="width: 90%;margin: 5px" color="#ffa000">Secondary</mu-button></mu-col>
-            <mu-col span="4"><mu-button style="width: 90%;margin: 5px" color="#ffa000">Secondary</mu-button></mu-col>
-            <mu-col span="4"><mu-button style="width: 90%;margin: 5px" color="#ffa000">Secondary</mu-button></mu-col>
+            <mu-col span="4">
+                <mu-button style="width: 90%;margin: 5px" color="#ffa000">Secondary</mu-button>
+            </mu-col>
+            <mu-col span="4">
+                <mu-button style="width: 90%;margin: 5px" color="#ffa000">Secondary</mu-button>
+            </mu-col>
+            <mu-col span="4">
+                <mu-button style="width: 90%;margin: 5px" color="#ffa000">Secondary</mu-button>
+            </mu-col>
         </mu-row>
+
+
+
     </div>
 </template>
 
@@ -101,11 +128,15 @@
         name: "TypePage",
         data() {
             return {
-                sheet: false
             }
         },
         methods: {
+            contestIn() {
 
+            },
+            startDialogClick() {
+                this.$router.push({name: 'TypeIntroduce'});
+            }
         }
     }
 </script>
