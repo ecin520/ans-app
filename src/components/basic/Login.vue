@@ -2,13 +2,14 @@
     <div class="login">
         <br><br>
         <mu-flex class="flex-demo" justify-content="center">
-            <img width="110px" src="../../assets/网络拓扑.png"/>
+            <mu-icon value="school" size="100" color="white"></mu-icon>
+<!--            <img width="110px" src="../../assets/网络拓扑.png"/>-->
         </mu-flex><br><br>
-        <mu-card style="width: 90%; max-width: 375px; margin: 0 auto;">
+        <mu-card style="width: 90%; max-width: 375px; margin: 5% auto;">
             <mu-card-header title="登陆"><br><br><br>
                 <mu-text-field :full-width="100" v-model="username" placeholder="username"></mu-text-field>
                 <br/>
-                <mu-text-field type="password" :full-width="100" v-model="password"
+                <mu-text-field type="password" :action-icon="visibility ? 'visibility_off' : 'visibility'" :action-click="() => (visibility = !visibility)" :type="visibility ? 'text' : 'password'" :full-width="100" v-model="password"
                                placeholder="password"></mu-text-field>
                 <br/>
                 <div>
@@ -27,7 +28,8 @@
         data() {
             return {
                 username: '',
-                password: ''
+                password: '',
+                visibility: false
             }
         },
         methods: {
@@ -40,7 +42,11 @@
                         'password': this.password
                     }
                 }).then(response => {
-                    this.$toast.success(response.data)
+                    if (response.data['status code'] === 200) {
+                        this.$cookies.set('isLogin', 'ecin520');
+                        this.$cookies.set('user', this.username);
+                        this.$router.push({name: 'HomePage'});
+                    }
                 }).catch(error => {
                     this.$toast.error(error)
                 });

@@ -49,7 +49,19 @@
                 this.$router.go(-1);
             },
             registerClick() {
-                this.$toast.success(this.username + ' ' + this.password);
+                this.$axios({
+                    url: '/api/client/user/insertUser',
+                    method: 'post',
+                    data: {
+                        'username': this.username,
+                        'password': this.password
+                    }
+                }).then(response => {
+                    this.$toast.success(response.data['message'].toString())
+                    this.$router.push({path: '/Login'});
+                }).catch(error => {
+                    this.$toast.success(error.toString())
+                });
             }
         }
     }

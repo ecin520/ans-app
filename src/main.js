@@ -9,8 +9,9 @@ import Toast from 'muse-ui-toast';
 import axios from 'axios'
 import animate from 'animate.css'
 import VueScroller from 'vue-scroller'
+import cookies from 'vue-cookies' //导入
 
-
+Vue.use(cookies);
 Vue.use(VueScroller);
 Vue.use(animate);
 Vue.use(Toast);
