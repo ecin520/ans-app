@@ -10,7 +10,7 @@
             <mu-button icon slot="left" @click="back" color="#ba68c8">
                 <mu-icon value="arrow_back"></mu-icon>
             </mu-button>
-            <a style="color: #ba68c8">脑筋急转弯</a>
+            <a style="color: #ba68c8">{{type.type_name}}</a>
         </mu-appbar>
 
 
@@ -24,10 +24,10 @@
             </mu-card-media>
 <!--            <mu-card-title title="Content Title" sub-title="Content Title"></mu-card-title>-->
             <mu-card-text>
-                散落在指尖的阳光，我试着轻轻抓住光影的踪迹，它却在眉宇间投下一片淡淡的阴影。
-                调皮的阳光掀动了四月的心帘，温暖如约的歌声渐起。
-                <h2 style="color: #af5960">热度：999</h2>
-                <h2 style="color: #af5960">难度：888</h2>
+                <p style="color: darkcyan">{{type.type_describe}}</p>
+
+                <h2 style="color: #af5960">热度：{{type.hot}}</h2>
+                <h2 style="color: #af5960">难度：{{type.difficulty}}</h2>
             </mu-card-text>
             <mu-flex justify-content="end">
                 <mu-card-actions>
@@ -44,6 +44,13 @@
         name: "TypeIntroduce",
         data() {
             return {
+                type: {
+                    id: '',
+                    type_name: '',
+                    type_describe: '',
+                    hot: '',
+                    difficulty: ''
+                }
             }
         },
         methods: {
@@ -53,6 +60,21 @@
             contestIn() {
                 this.$router.push({name: 'ContestSinglePage'});
             }
+        },
+        mounted() {
+           // this.$toast.success(this.$route.params.type_name);
+            this.$axios({
+                url: '/api/client/type/getTypeByTypeName',
+                method: 'post',
+                params: {
+                    'typeName': this.$route.params.type_name
+                }
+            }).then(response => {
+                this.type = response.data
+            }).catch(error => {
+
+            });
+
         }
     }
 </script>

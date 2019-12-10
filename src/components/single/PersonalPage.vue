@@ -2,14 +2,14 @@
     <div class="personal-page">
 
         <div class="avatar-background">
-            <a style="color: white;font-size: 1.6em;">易小凡</a><br>
-            <a style="color: white;font-size: 1em;">ID : 101245</a>
+            <a style="color: white;font-size: 1.6em;">{{user.nickname}}</a><br>
+            <a style="color: white;font-size: 1em;">ID : {{user.id}}</a>
         </div>
         <div class="avatar">
             <mu-flex class="flex-wrapper" justify-content="center">
                 <!--                <a style="color: white">nickname</a>-->
                 <mu-avatar size="90">
-                    <img src="https://muse-ui.org/img/avatar3.55182749.jpg"/>
+                    <img :src="user.avatar_url"/>
                 </mu-avatar>
                 <!--                <a style="color: white">nickname</a>-->
             </mu-flex>
@@ -18,30 +18,30 @@
         <div class="content">
             <br><br>
             <a style="color: #2b2b2b;font-size: 1.1em;"><a style="color: #58b1ec">个人签名：</a>
-                散落在指尖的阳光，我试着轻轻抓住光影的踪迹，它却在眉宇间投下一片淡淡的阴影。</a>
+                {{user.sign}}</a>
             <br> <br>
             <mu-chip style="float: left" color="#ff7043">
-                Tel：15607942340
+                Tel：{{user.tel_number}}
             </mu-chip>
             <mu-chip style="float: right" color="teal">
-                擅长类型：全能百科
+                擅长类型：{{user.good_at}}
             </mu-chip>
             <br><br>
             <mu-chip style="float: left" color="#a1887f">
-                爱好：篮球&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                等级：{{user.rank}}
             </mu-chip>
             <mu-chip style="float: right" color="#40c4ff">
-                学校：江西师范大学
+                注册时间：{{user.register_time}}
             </mu-chip>
 
             <br><br>
             <mu-flex justify-content="center">
                 <div style="float: left">
-                    <h4>正确率: 50%</h4>
+                    <h4>正确率: {{(user.correct_number/user.ans_number).toFixed(3)*100}}%</h4>
                     <mu-circular-progress
                             class="demo-circular-progress"
                             mode="determinate"
-                            :value="50"
+                            :value="(user.correct_number/user.ans_number).toFixed(3)*100"
                             color="success"
                             :stroke-width="7"
                             :size="76">
@@ -71,7 +71,38 @@
 
 <script>
     export default {
-        name: "PersonalPage"
+        name: "PersonalPage",
+        data() {
+          return {
+              user: {
+                      id: '',
+                      username: '',
+                      nickname: '',
+                      avatar_url: '',
+                      tel_number: '',
+                      rank: '',
+                      sign: '',
+                      ans_number: '',
+                      correct_number: '',
+                      good_at: '',
+                      register_time: ''
+                  }
+
+          }
+        },
+        created() {
+            this.$axios({
+                url: '/api/client/user/getUserByUsername',
+                method: 'post',
+                params: {
+                    'username': this.$cookies.get('user')
+                }
+            }).then(response => {
+                this.user = response.data
+            }).catch(error => {
+                console.log(error)
+            });
+        }
     }
 </script>
 
