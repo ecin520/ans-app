@@ -1,32 +1,66 @@
 <template>
-  <div class="message-page">
-    <scroller>
-      <br><br><br><br><br>
-      <mu-list>
-        <div class="list-item" v-for="(item, index) in messageList">
-          <mu-list-item avatar button @click="messageClick(item.friendName)">
-            <mu-list-item-action>
-              <mu-avatar>
-                <img  :src="item.avatarUrl"/>
-              </mu-avatar>
-            </mu-list-item-action>
+    <div class="message-page">
 
-            <mu-list-item-content>
-              <mu-list-item-title>{{item.friendName}}</mu-list-item-title>
-              <mu-list-item-sub-title>
-                {{item.shortMessage}}
-              </mu-list-item-sub-title>
-            </mu-list-item-content>
-            <mu-badge color="red" :content="item.badgeCount"></mu-badge>
-          </mu-list-item>
-          <mu-divider inset></mu-divider>
-        </div>
-      </mu-list>
-      <br><br><br><br><br>
-    </scroller>
+        <mu-drawer width="90%" :open.sync="messageNotice">
+            <mu-button @click="messageNotice = false" style="float: right" icon color="#ba68c8">
+                <mu-icon value="clear"></mu-icon>
+            </mu-button>
+            <mu-list>
+                <mu-list-item><h3>{{noverification}}</h3></mu-list-item>
+                <mu-divider></mu-divider>
+                <div class="list-item" v-for="(item, index) in verificationList">
+                    <mu-list-item avatar>
+                        <mu-list-item-action>
+                            <mu-avatar>
+                                <img :src="item.avatar_url"/>
+                            </mu-avatar>
+                        </mu-list-item-action>
+                        <mu-list-item-content>
+                            {{item.nickname}}
+                        </mu-list-item-content>
+                        <mu-button flat small @click="agreeFriend(item.id)" style="float: right" color="success">
+                            同意
+                        </mu-button>
+                        <mu-button flat small @click="" style="float: right" color="error">
+                            拒绝
+                        </mu-button>
+                    </mu-list-item>
+                    <mu-divider></mu-divider>
+                </div>
+            </mu-list>
+        </mu-drawer>
 
 
-  </div>
+        <scroller>
+            <br><br><br><br><br>
+            <mu-list>
+                <mu-list-item avatar button @click="showNotice">
+                    <h3>消息通知</h3>
+                </mu-list-item>
+                <div class="list-item" v-for="(item, index) in messageList">
+                    <mu-list-item avatar button @click="messageClick(item)">
+                        <mu-list-item-action>
+                            <mu-avatar>
+                                <img :src="item.avatarUrl"/>
+                            </mu-avatar>
+                        </mu-list-item-action>
+
+                        <mu-list-item-content>
+                            <mu-list-item-title>{{item.friendName}}</mu-list-item-title>
+                            <mu-list-item-sub-title>
+                                {{item.shortMessage}}
+                            </mu-list-item-sub-title>
+                        </mu-list-item-content>
+                        <mu-badge color="red" :content="item.badgeCount"></mu-badge>
+                    </mu-list-item>
+                    <mu-divider inset></mu-divider>
+                </div>
+            </mu-list>
+            <br><br><br><br><br>
+        </scroller>
+
+
+    </div>
 </template>
 
 <script>
@@ -36,37 +70,146 @@
             return {
                 messageList: [
                     {
-                        avatarUrl: 'https://i.loli.net/2017/08/21/599a521472424.jpg',
-                        friendName: 'David',
-                        shortMessage: '你好啊，很高兴认识你',
-                        badgeCount: 1
-                    },
-                    {
-                        avatarUrl: 'https://muse-ui.org/img/uicon.ac3913bf.jpg',
-                        friendName: 'Jenny',
-                        shortMessage: '吃饭了吗。',
-                        badgeCount: 2
-                    },
-                    {
-                        avatarUrl: 'https://muse-ui.org/img/uicon.ac3913bf.jpg',
-                        friendName: 'Mike',
-                        shortMessage: '昨天的100什么时候还',
-                        badgeCount: 1
-                    },
-                    {
-                        avatarUrl: 'https://i.loli.net/2017/08/21/599a521472424.jpg',
-                        friendName: 'Fucker',
-                        shortMessage: '晚上去网吧吗',
-                        badgeCount: 1
+                        avatarUrl: '',
+                        otherId: '',
+                        friendName: '',
+                        shortMessage: '',
+                        badgeCount: ''
                     }
-                ]
+                ],
+                verificationList: [
+                    {
+                        id: '',
+                        nickname: '',
+                        avatar_url: ''
+                    }
+                ],
+                messageNotice: false,
+                noverification: ''
             }
         },
-      methods: {
-        messageClick(friendName) {
-            this.$router.push({path: 'ChatPageSingle'});
-          }
-      }
+        methods: {
+            messageClick(item) {
+                this.$router.push(
+                    {
+                        name: 'ChatPageSingle', params:
+                            {otherId: item.otherId, avatarUrl: item.avatarUrl, friendName: item.friendName}
+                    });
+            },
+            showNotice() {
+                this.messageNotice = true;
+            },
+            agreeFriend(oid) {
+
+                this.$axios({
+                    url: '/api/client/verification/updateVerificationsStatus',
+                    method: 'post',
+                    data: {
+                        'send_id': oid,
+                        'receive_id': this.$cookies.get('userId'),
+                        'ver_status': 1
+                    }
+                }).then(response => {
+                    this.$toast.success(response.data['message'].toString());
+                }).catch(error => {
+                    console.log(error);
+                });
+
+            }
+        },
+        mounted() {
+
+            let id = '';
+
+            this.$axios({
+                url: '/api/client/chat/listAllUsersByReceiveId',
+                method: 'post',
+                params: {
+                    'receiveId': this.$cookies.get('userId')
+                }
+            }).then(response => {
+
+                this.$axios({
+                    url: '/api/client/chat/listAllUsersBySendId',
+                    method: 'post',
+                    params: {
+                        'userId': this.$cookies.get('userId')
+                    }
+                }).then(response0 => {
+
+                    this.messageList = [];
+                    for (let i = 0; i < response.data.length; i++) {
+                        let newJson = {
+                            'avatarUrl': response.data[i].avatar_url,
+                            'otherId': response.data[i].id,
+                            'friendName': response.data[i].nickname,
+                            'shortMessage': '',
+                            'badgeCount': ''
+                        };
+                        this.messageList.push(newJson);
+                    }
+
+                    for (let i = 0; i < response0.data.length; i++) {
+                        let newJson = {
+                            'avatarUrl': response0.data[i].avatar_url,
+                            'otherId': response0.data[i].id,
+                            'friendName': response0.data[i].nickname,
+                            'shortMessage': '',
+                            'badgeCount': ''
+                        };
+                        if(this.messageList.filter((item) => {
+                            return item.otherId === response0.data[i].id;
+                        }).length === 1) {
+                            continue;
+                        }
+                        this.messageList.push(newJson);
+                    }
+
+
+                    for (let i = 0; i < this.messageList.length; i++) {
+                        this.$axios({
+                            url: '/api/client/chat/getLatestChat',
+                            method: 'post',
+                            params: {
+                                'sendId': this.messageList[i].otherId,
+                                'receiveId': this.$cookies.get('userId')
+                            }
+                        }).then(response => {
+                            this.messageList[i].shortMessage = response.data.content;
+
+
+                        }).catch(error => {
+
+                        });
+                    }
+
+                });
+
+
+
+            }).catch(error => {
+
+            });
+
+            this.$axios({
+                url: '/api/client/verification/listUserUnverified',
+                method: 'post',
+                params: {
+                    'id': this.$cookies.get('userId')
+                }
+            }).then(response => {
+                this.verificationList = response.data;
+                if (response.data.length === 0) {
+                    this.noverification = '无好友请求';
+                }
+            }).catch(error => {
+                console.log(error);
+            });
+
+        },
+        created() {
+
+        }
     }
 </script>
 

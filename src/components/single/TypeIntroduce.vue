@@ -20,7 +20,7 @@
 <!--                <h1>脑筋急转弯</h1>-->
 <!--            </mu-card-header>-->
             <mu-card-media>
-                <img src="https://muse-ui.org/img/sun.a646a52d.jpg">
+                <img style="" src="@/assets/news1.gif">
             </mu-card-media>
 <!--            <mu-card-title title="Content Title" sub-title="Content Title"></mu-card-title>-->
             <mu-card-text>

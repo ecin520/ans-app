@@ -4,7 +4,7 @@
             <mu-button icon slot="left" @click="back">
                 <mu-icon color="black" value="arrow_back"></mu-icon>
             </mu-button>
-            <h4 style="color: black">{{nickName}}</h4>
+            <h4 style="color: black">{{nickname}}</h4>
         </mu-appbar>
 
         <div id="pop" v-for="(item, index) in chatMessage">
@@ -14,12 +14,14 @@
             <div :class="{'other-side': item.status === 2,'self-side': item.status === 1}">
                 <div :class="{'other-avatar': item.status === 2,'self-avatar': item.status === 1}">
                     <mu-avatar>
-                        <img src="https://i.loli.net/2017/08/21/599a521472424.jpg"/>
+                        <img :src="avatarUrl"/>
                     </mu-avatar>
                 </div>
                 <span>{{item.content}}</span>
+
             </div>
         </div>
+        <h3>{{sb}}</h3>
         <br><br>
 
         <a id="kof"></a>
@@ -49,65 +51,37 @@
         name: "ChatPageSingle",
         data() {
             return {
-                nickName: 'Jenny',
+                nickname: '',
+                avatarUrl: '',
                 inputMessage: '',
                 chatMessage: [
                     {
-                        time: '10:56',
-                        content: '12345上山打老虎',
-                        status: 1
-                    },
-                    {
-                        time: '10:57',
-                        content: '故人西辞黄鹤楼',
-                        status: 2
-                    },
-                    {
-                        time: '10:58',
-                        content: 'Hello Siri',
-                        status: 1
-                    },
-                    {
-                        time: '10:56',
-                        content: '12345上山打老虎',
-                        status: 1
-                    },
-                    {
-                        time: '10:56',
-                        content: '12345上山打老虎',
-                        status: 2
-                    },
-                    {
-                        time: '10:58',
-                        content: 'Hello Siri',
-                        status: 1
-                    },
-                    {
-                        time: '10:56',
-                        content: '12345上山打老虎',
-                        status: 1
-                    },
-                    {
                         time: '',
-                        content: '12345上山打老虎',
-                        status: 2
+                        content: '',
+                        status: ''
                     },
+                ],
+                selfChat: [
                     {
-                        time: '10:58',
-                        content: 'Hello Siri',
-                        status: 1
-                    },
-                    {
-                        time: '10:56',
-                        content: '12345上山打老虎',
-                        status: 1
-                    },
-                    {
-                        time: '10:56',
-                        content: '12345上山打老虎12345上山打老虎12345上山打老虎12345上山打老虎12345上山打老虎12345上山打老虎12345上山打老虎12345上山打老虎12345上山打老虎',
-                        status: 2
+                        "id": '',
+                        "send_id": '',
+                        "receive_id": '',
+                        "content": '',
+                        "read_status": '',
+                        "time": ''
                     }
-                ]
+                ],
+                otherChat: [
+                    {
+                        "id": '',
+                        "send_id": '',
+                        "receive_id": '',
+                        "content": '',
+                        "read_status": '',
+                        "time": ''
+                    }
+                ],
+                sb: ''
             }
         },
         methods: {
@@ -115,10 +89,71 @@
                 this.$router.go(-1);
             },
             send() {
+                console.log(this.selfChat);
+                console.log(this.otherChat);
+
                 document.getElementById("kof").scrollIntoView();
             }
         },
         mounted() {
+            // this.$router.push(
+            //     {path: 'ChatPageSingle', params:
+            //             {'otherId': item.otherId, 'avatarUrl': item.avatarUrl, 'friendName': item.friendName}});
+
+            this.nickname = this.$route.params.friendName;
+            this.avatarUrl = this.$route.params.avatarUrl;
+
+            this.$axios({
+                url: '/api/client/chat/listChatRecode',
+                method: 'post',
+                params: {
+                    'sendId': this.$route.params.otherId,
+                    'receiveId': this.$cookies.get('userId')
+                }
+            }).then(response => {
+                this.selfChat = response.data;
+
+                this.$axios({
+                    url: '/api/client/chat/listChatRecode',
+                    method: 'post',
+                    params: {
+                        'sendId': this.$cookies.get('userId'),
+                        'receiveId': this.$route.params.otherId
+                    }
+                }).then(response => {
+                    this.otherChat = response.data;
+                    this.chatMessage = [];
+
+                    for (let i = 0; i < this.selfChat.length; i++) {
+                        let chatJson = {
+                            'time': this.selfChat[i].time,
+                            'content': this.selfChat[i].content,
+                            'status': 2
+                        };
+                        this.chatMessage.push(chatJson);
+                    }
+
+                    for (let i = 0; i < this.otherChat.length; i++) {
+                        let chatJson = {
+                            'time': this.otherChat[i].time,
+                            'content': this.otherChat[i].content,
+                            'status': 1
+                        };
+                        this.chatMessage.push(chatJson);
+                    }
+
+                    console.log(this.chatMessage)
+
+                }).catch(error => {
+                    console.log(error);
+                });
+
+            }).catch(error => {
+                console.log(error);
+            });
+
+
+
             document.getElementById("kof").scrollIntoView();
         }
     }
@@ -127,7 +162,7 @@
 <style scoped lang="less">
 
     #chat-page-single {
-        position: relative;
+        position: absolute;
         width: 100%;
         height: 100%;
         background-color: #eeeeee;

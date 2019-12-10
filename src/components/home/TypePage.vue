@@ -1,7 +1,7 @@
 <template>
     <div class="type">
         <mu-card-media style="margin-top: 0px;" title="新主题来袭" sub-title="全新类型-全能百科，成为一个全能小王子。">
-            <img @click="picClick" style="width: 100%;margin-top: -20px;" src="@/assets/news1.png">
+            <img @click="picClick" style="width: 100%;" src="@/assets/news1.gif">
         </mu-card-media>
 
 
@@ -76,7 +76,7 @@
                 <mu-col span="4" v-for="(item, index) in typeData">
                     <mu-button
                         @click="typeClick(item.type_name)"
-                        style="width: 90%;margin: 5px"
+                        style="width: 90%;margin: 5px;font-size: smaller;height: 45px;"
                         color="#d1c4e9">{{item.type_name}}</mu-button>
                 </mu-col>
             </mu-row>

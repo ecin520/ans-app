@@ -61,6 +61,24 @@
             picClick() {
                 alert('Pic')
             }
+        },
+        mounted() {
+
+            /*获取自己id*/
+            this.$axios({
+                url: '/api/client/user/getUserByUsername',
+                method: 'post',
+                params: {
+                    'username': this.$cookies.get('user')
+                }
+            }).then(response => {
+                this.$store.state.userId = response.data.id;
+                this.$cookies.set('userId', response.data.id);
+                console.log(response.data.id)
+            }).catch(error => {
+
+            });
+
         }
     }
 </script>

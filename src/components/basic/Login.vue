@@ -34,6 +34,7 @@
         },
         methods: {
             login() {
+
                 this.$axios({
                     url: '/api/client/user/login',
                     method: 'get',
@@ -45,11 +46,27 @@
                     if (response.data['status code'] === 200) {
                         this.$cookies.set('isLogin', 'ecin520');
                         this.$cookies.set('user', this.username);
+
+                        this.$axios({
+                            url: '/api/client/user/getUserByUsername',
+                            method: 'post',
+                            params: {
+                                'username': this.username
+                            }
+                        }).then(userResponse => {
+                            this.$cookies.set('userId', userResponse.data.id);
+                        }).catch(error => {
+
+                        });
+
+
                         this.$router.push({name: 'HomePage'});
                     }
                 }).catch(error => {
                     this.$toast.error(error)
                 });
+
+
 
             },
             register() {

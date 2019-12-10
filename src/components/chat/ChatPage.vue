@@ -16,9 +16,12 @@
 
 
         <mu-drawer width="100%" :docked="true" :open.sync="open">
-            <mu-button @click="open = false" style="float: right" icon color="#ba68c8">
-                <mu-icon value="home"></mu-icon>
-            </mu-button>
+            <mu-appbar style="width: 100%;" color="#97c872">
+                <mu-button @click="open = false" style="float: right" icon color="white">
+                    <mu-icon value="home"></mu-icon>
+                </mu-button>
+            </mu-appbar>
+            <personal-page></personal-page>
         </mu-drawer>
 
         <div v-if="active === 0">
@@ -38,8 +41,9 @@
     import MessagePage from "./MessagePage";
     import ContactPage from "./ContactPage";
     import Find from "./Find";
+    import PersonalPage from "../single/PersonalPage";
     export default {
-        components: {Find, MessagePage, ContactPage},
+        components: {Find, MessagePage, ContactPage, PersonalPage},
         data() {
             return {
                 title: 'Chat',
