@@ -1,31 +1,37 @@
 <template>
     <div id="chat-page-single">
-        <mu-appbar style="width: 100%;position: sticky;top: 0;" color="white">
+
+        <div class="bg-color">
+
+        </div>
+
+        <mu-appbar style="width: 100%;position: fixed;top: 0;" color="white">
             <mu-button icon slot="left" @click="back">
                 <mu-icon color="black" value="arrow_back"></mu-icon>
             </mu-button>
             <h4 style="color: black">{{nickname}}</h4>
         </mu-appbar>
 
-        <div v-if="showStatus === true" id="pop" v-for="(item, index) in chatMessage">
+        <br><br><br>
+        <section class="coversation" ref="singleHeight">
+            <div v-if="showStatus === true" id="pop" v-for="(item, index) in chatMessage">
 
-            <p class="time"><span>{{item.time}}</span></p>
-            <br>
-            <div :class="{'other-side': item.status === 2,'self-side': item.status === 1}">
-                <div :class="{'other-avatar': item.status === 2,'self-avatar': item.status === 1}">
-                    <mu-avatar>
-                        <img v-if="item.status === 1" :src="selfAvatar"/>
-                        <img v-if="item.status === 2" :src="avatarUrl"/>
-                    </mu-avatar>
+                <p class="time"><span>{{item.time}}</span></p>
+                <br>
+                <div :class="{'other-side': item.status === 2,'self-side': item.status === 1}">
+                    <div :class="{'other-avatar': item.status === 2,'self-avatar': item.status === 1}">
+                        <mu-avatar>
+                            <img v-if="item.status === 1" :src="selfAvatar"/>
+                            <img v-if="item.status === 2" :src="avatarUrl"/>
+                        </mu-avatar>
+                    </div>
+                    <span>{{item.content}}</span>
+
                 </div>
-                <span>{{item.content}}</span>
-
             </div>
-        </div>
-        <h3>{{sb}}</h3>
+        </section>
         <br><br>
 
-        <a id="kof"></a>
 
         <div class="message-input">
             <mu-row>
@@ -84,60 +90,107 @@
                     }
                 ],
                 showStatus: false,
-                websocket: null,
-                sb: ''
+                websocket: null
             }
         },
         methods: {
             back() {
                 this.$router.go(-1);
             },
-            send() {
+            async send() {
                 let chat = {
                     'sendId': this.$cookies.get('userId'),
-                    'receiveId': this.$route.params.otherId,
+                    'receiveId': this.$route.params.otherId.toString(),
                     'content': this.inputMessage,
                     'status': '1'
                 };
-                this.websocket.send(JSON.stringify(chat));
-                document.getElementById("kof").scrollIntoView();
+                console.log(JSON.stringify(chat));
+                this.sendMessage(chat);
+                let chatJson = {
+                    'time': this.now(),
+                    'content': this.inputMessage,
+                    'status': 1
+                };
+
+
+
+                this.chatMessage.push(chatJson);
+
+                this.inputMessage = '';
+
+                this.$nextTick(()=>{
+                    window.scrollTo(0, this.$refs.singleHeight.offsetHeight-window.innerHeight+250)
+                });
+
             },
             initWebsocket() {
+                let _this = this;
                 this.websocket = new WebSocket('ws://localhost:8888/ws');
-                this.websocket.onmessage = this.onMessage();
-                this.websocket.onopen = this.onOpen();
-                this.websocket.onclose = this.onClose();
-                this.websocket.onerror = this.onError();
-            },
-            onError(error) {
-                console.log(error);
-                alert('error');
-            },
-            onOpen() {
-                let chat = {
-                    'sendId': this.$cookies.get('userId'),
-                    'receiveId': '',
-                    'content': 'Request connect server',
-                    'status': '2'
+                this.websocket.onopen = function () {
+                    // alert('连接成功');
+                    let chat = {
+                        'sendId': _this.$cookies.get('userId'),
+                        'receiveId': '',
+                        'content': 'Request connect server',
+                        'status': '2'
+                    };
+                    _this.sendMessage(chat);
                 };
-                alert('已连接');
-                if (this.websocket.readyState === 1) {
-                    this.websocket.send(JSON.stringify(chat));
-                } else {
-                    alert('not ready')
+                this.websocket.onclose = function () {
+                    // alert('connect close');
+                };
+                this.websocket.onmessage = function (event) {
+                    let chat = JSON.parse(event.data);
+                    let chatJson = {
+                        'time': chat.sendTime,
+                        'content': chat.content,
+                        'status': 2
+                    };
+                    _this.chatMessage.push(chatJson);
+                    _this.$nextTick(()=>{
+                        window.scrollTo(0, _this.$refs.singleHeight.offsetHeight-window.innerHeight+250)
+                    });
+                    console.log(event.data);
+                };
+                this.websocket.onerror = function () {
+                    // alert('error')
                 }
+
             },
-            onMessage(event) {
-                console.log(event);
+            sendMessage(chat) {
+                this.websocket.send(JSON.stringify(chat));
             },
-            onClose() {
-                alert('close')
+            now() {
+                let date = new Date();
+                let seperator1 = "-";
+                let seperator2 = ":";
+                let month = date.getMonth() + 1;
+                let strDate = date.getDate();
+                if (month >= 1 && month <= 9) {
+                    month = "0" + month;
+                }
+                if (strDate >= 0 && strDate <= 9) {
+                    strDate = "0" + strDate;
+                }
+                let hours = date.getHours();
+                if (hours >= 0 && hours <= 9) {
+                    hours = "0" + hours;
+                }
+                let minutes = date.getMinutes();
+                if (minutes >= 0 && minutes <= 9) {
+                    minutes = "0" + minutes;
+                }
+                let seconds = date.getSeconds();
+                if (seconds >= 0 && seconds <= 9) {
+                    seconds = "0" + seconds;
+                }
+                let currentDate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+                    + " " + hours + seperator2 + minutes
+                    + seperator2 + seconds;
+                return currentDate;
             }
         },
-        created() {
-            // this.$router.push(
-            //     {path: 'ChatPageSingle', params:
-            //             {'otherId': item.otherId, 'avatarUrl': item.avatarUrl, 'friendName': item.friendName}});
+        mounted() {
 
             this.nickname = this.$route.params.friendName;
             this.avatarUrl = this.$route.params.avatarUrl;
@@ -147,7 +200,8 @@
                 method: 'post',
                 params: {
                     'sendId': this.$route.params.otherId,
-                    'receiveId': this.$cookies.get('userId')
+                    'receiveId': this.$cookies.get('userId'),
+                    'role': 'self'
                 }
             }).then(response => {
                 this.selfChat = response.data;
@@ -157,7 +211,8 @@
                     method: 'post',
                     params: {
                         'sendId': this.$cookies.get('userId'),
-                        'receiveId': this.$route.params.otherId
+                        'receiveId': this.$route.params.otherId,
+                        'role': 'other'
                     }
                 }).then(response => {
                     this.otherChat = response.data;
@@ -180,7 +235,15 @@
                         };
                         this.chatMessage.push(chatJson);
                     }
-                    console.log(this.chatMessage);
+
+                    console.log(this.chatMessage.sort(function (x, y) {
+                        return new Date(x.time) - new Date(y.time);
+                    }));
+
+                    this.$nextTick(()=>{
+                        window.scrollTo(0, this.$refs.singleHeight.offsetHeight-window.innerHeight+250)
+                    });
+
                     this.showStatus = true;
 
                 }).catch(error => {
@@ -191,14 +254,20 @@
                 console.log(error);
             });
 
-            document.getElementById("kof").scrollIntoView();
 
             if ('WebSocket' in window) {
                 this.initWebsocket();
             } else {
                 console.log('Not support');
             }
+            this.$nextTick(()=>{
+                window.scrollTo(0,this.$refs.singleHeight.offsetHeight-window.innerHeight)
+            })
+            // document.getElementById("kof").scrollIntoView();
 
+        },
+        destroyed() {
+            this.websocket.close();
         }
     }
 </script>
@@ -206,10 +275,19 @@
 <style scoped lang="less">
 
     #chat-page-single {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background-color: #eeeeee;
+
+        /*width: 100%;*/
+        /*height: 100%;*/
+        /*background-color: #eeeeee;*/
+
+        .bg-color {
+            position: fixed;
+            margin-top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #eeeeee;
+            z-index: -999;
+        }
 
         #pop {
             /*margin-top:44px;*/

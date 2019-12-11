@@ -51,7 +51,7 @@
                                 {{item.shortMessage}}
                             </mu-list-item-sub-title>
                         </mu-list-item-content>
-                        <mu-badge color="red" :content="item.badgeCount"></mu-badge>
+                        <mu-badge v-if="item.badgeCount !== 0" color="red" :content="item.badgeCount"></mu-badge>
                     </mu-list-item>
                     <mu-divider inset></mu-divider>
                 </div>
@@ -181,6 +181,22 @@
                         }).catch(error => {
 
                         });
+
+                        this.$axios({
+                            url: '/api/client/chat/getUnReadCount',
+                            method: 'post',
+                            params: {
+                                'sendId': this.messageList[i].otherId,
+                                'receiveId': this.$cookies.get('userId')
+                            }
+                        }).then(response => {
+                            this.messageList[i].badgeCount = response.data;
+                            console.log()
+                            this.showStatus = true;
+                        }).catch(error => {
+
+                        });
+
                     }
 
                 });

@@ -57,14 +57,15 @@
                             this.$cookies.set('userId', userResponse.data.id);
                             this.$cookies.set('avatar', userResponse.data.avatar_url);
                         }).catch(error => {
-
+                            console.log(error)
                         });
 
 
                         this.$router.push({name: 'HomePage'});
                     }
+                    this.$toast.success(response.data['message']);
                 }).catch(error => {
-                    this.$toast.error(error)
+                    console.log(error)
                 });
 
 
