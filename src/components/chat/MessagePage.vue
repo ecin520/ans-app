@@ -37,7 +37,7 @@
                 <mu-list-item avatar button @click="showNotice">
                     <h3>消息通知</h3>
                 </mu-list-item>
-                <div class="list-item" v-for="(item, index) in messageList">
+                <div v-if="showStatus === true" class="list-item" v-for="(item, index) in messageList">
                     <mu-list-item avatar button @click="messageClick(item)">
                         <mu-list-item-action>
                             <mu-avatar>
@@ -85,7 +85,8 @@
                     }
                 ],
                 messageNotice: false,
-                noverification: ''
+                noverification: '',
+                showStatus: false
             }
         },
         methods: {
@@ -176,8 +177,7 @@
                             }
                         }).then(response => {
                             this.messageList[i].shortMessage = response.data.content;
-
-
+                            this.showStatus = true;
                         }).catch(error => {
 
                         });

@@ -15,6 +15,8 @@ import ContestSinglePage from "../components/single/ContestSinglePage";
 
 import TypeIntroduce from "../components/single/TypeIntroduce";
 
+import FriendCard from "../components/single/FriendCard";
+
 Vue.use(Router);
 
 export default new Router({
@@ -65,6 +67,11 @@ export default new Router({
             path: '/TypeIntroduce',
             name: 'TypeIntroduce',
             component: TypeIntroduce
+        },
+        {
+            path: '/FriendCard',
+            name: 'FriendCard',
+            component: FriendCard
         }
 
     ]

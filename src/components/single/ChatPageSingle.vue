@@ -7,14 +7,15 @@
             <h4 style="color: black">{{nickname}}</h4>
         </mu-appbar>
 
-        <div id="pop" v-for="(item, index) in chatMessage">
+        <div v-if="showStatus === true" id="pop" v-for="(item, index) in chatMessage">
 
             <p class="time"><span>{{item.time}}</span></p>
             <br>
             <div :class="{'other-side': item.status === 2,'self-side': item.status === 1}">
                 <div :class="{'other-avatar': item.status === 2,'self-avatar': item.status === 1}">
                     <mu-avatar>
-                        <img :src="avatarUrl"/>
+                        <img v-if="item.status === 1" :src="selfAvatar"/>
+                        <img v-if="item.status === 2" :src="avatarUrl"/>
                     </mu-avatar>
                 </div>
                 <span>{{item.content}}</span>
@@ -53,6 +54,7 @@
             return {
                 nickname: '',
                 avatarUrl: '',
+                selfAvatar: this.$cookies.get('avatar'),
                 inputMessage: '',
                 chatMessage: [
                     {
@@ -81,6 +83,8 @@
                         "time": ''
                     }
                 ],
+                showStatus: false,
+                websocket: null,
                 sb: ''
             }
         },
@@ -89,13 +93,48 @@
                 this.$router.go(-1);
             },
             send() {
-                console.log(this.selfChat);
-                console.log(this.otherChat);
-
+                let chat = {
+                    'sendId': this.$cookies.get('userId'),
+                    'receiveId': this.$route.params.otherId,
+                    'content': this.inputMessage,
+                    'status': '1'
+                };
+                this.websocket.send(JSON.stringify(chat));
                 document.getElementById("kof").scrollIntoView();
+            },
+            initWebsocket() {
+                this.websocket = new WebSocket('ws://localhost:8888/ws');
+                this.websocket.onmessage = this.onMessage();
+                this.websocket.onopen = this.onOpen();
+                this.websocket.onclose = this.onClose();
+                this.websocket.onerror = this.onError();
+            },
+            onError(error) {
+                console.log(error);
+                alert('error');
+            },
+            onOpen() {
+                let chat = {
+                    'sendId': this.$cookies.get('userId'),
+                    'receiveId': '',
+                    'content': 'Request connect server',
+                    'status': '2'
+                };
+                alert('已连接');
+                if (this.websocket.readyState === 1) {
+                    this.websocket.send(JSON.stringify(chat));
+                } else {
+                    alert('not ready')
+                }
+            },
+            onMessage(event) {
+                console.log(event);
+            },
+            onClose() {
+                alert('close')
             }
         },
-        mounted() {
+        created() {
             // this.$router.push(
             //     {path: 'ChatPageSingle', params:
             //             {'otherId': item.otherId, 'avatarUrl': item.avatarUrl, 'friendName': item.friendName}});
@@ -141,8 +180,8 @@
                         };
                         this.chatMessage.push(chatJson);
                     }
-
-                    console.log(this.chatMessage)
+                    console.log(this.chatMessage);
+                    this.showStatus = true;
 
                 }).catch(error => {
                     console.log(error);
@@ -152,9 +191,14 @@
                 console.log(error);
             });
 
-
-
             document.getElementById("kof").scrollIntoView();
+
+            if ('WebSocket' in window) {
+                this.initWebsocket();
+            } else {
+                console.log('Not support');
+            }
+
         }
     }
 </script>

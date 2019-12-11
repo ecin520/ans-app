@@ -55,6 +55,7 @@
                             }
                         }).then(userResponse => {
                             this.$cookies.set('userId', userResponse.data.id);
+                            this.$cookies.set('avatar', userResponse.data.avatar_url);
                         }).catch(error => {
 
                         });
