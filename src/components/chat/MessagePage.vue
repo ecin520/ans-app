@@ -35,8 +35,11 @@
             <br><br><br><br><br>
             <mu-list>
                 <mu-list-item avatar button @click="showNotice">
-                    <h3>消息通知</h3>
+                    &nbsp;
+                    <mu-icon value="speaker_notes"></mu-icon>
+                    <h3>&nbsp;&nbsp;&nbsp;消息通知</h3>
                 </mu-list-item>
+                <mu-divider></mu-divider>
                 <div v-if="showStatus === true" class="list-item" v-for="(item, index) in messageList">
                     <mu-list-item avatar button @click="messageClick(item)">
                         <mu-list-item-action>
@@ -53,8 +56,9 @@
                         </mu-list-item-content>
                         <mu-badge v-if="item.badgeCount !== 0" color="red" :content="item.badgeCount"></mu-badge>
                     </mu-list-item>
-                    <mu-divider inset></mu-divider>
+                    <mu-divider v-if="index !== messageList.length-1" inset></mu-divider>
                 </div>
+                <mu-divider></mu-divider>
             </mu-list>
             <br><br><br><br><br>
         </scroller>
