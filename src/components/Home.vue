@@ -5,7 +5,7 @@
         </div>
 
         <div class="bottom-nav">
-            <mu-bottom-nav @change="bottomNavClick" ripple color="#ba68c8">
+            <mu-bottom-nav @change="bottomNavClick" ripple color="#97c872">
                 <mu-bottom-nav-item value="Home" title="Home" icon="pets"></mu-bottom-nav-item>
                 <mu-bottom-nav-item value="Contest" title="Contest" icon="bubble_chart"></mu-bottom-nav-item>
                 <mu-bottom-nav-item value="Chat" title="Chat" icon="people_alt"></mu-bottom-nav-item>

@@ -1,68 +1,75 @@
 <template>
-    <div class="contest-single-page">
-        <div class="bg-color"></div>
-        <div class="loadbar">
-            <strong class="bar" :style="'height:'+progress+'%'"></strong>
-        </div>
-        <div class="right-loadbar">
-            <strong class="right-bar" :style="'height:'+progress+'%'"></strong>
-        </div>
+  <div class="contest-single-page">
+    <div class="bg-color"></div>
+    <div class="loadbar">
+      <strong class="bar" :style="'height:'+progress+'%'"></strong>
+    </div>
+    <div class="right-loadbar">
+      <strong class="right-bar" :style="'height:'+progress+'%'"></strong>
+    </div>
 
-        <div class="header-bar">
-            <mu-row>
-                <mu-col span="2">
-                    <mu-avatar style="float: left">
-                        <img src="https://muse-ui.org/img/uicon.ac3913bf.jpg"/>
-                    </mu-avatar>
-                </mu-col>
+    <div class="header-bar">
+      <mu-row>
+        <mu-col span="2">
+          <mu-badge style="float: left" content="12" circle color="secondary">
+            <mu-avatar style="float: left">
+              <img src="https://muse-ui.org/img/uicon.ac3913bf.jpg"/>
+            </mu-avatar>
+          </mu-badge>
+          <br><br>
+          <a style="color: #ffffff;float: left">易小凡</a>
+        </mu-col>
 
-                <mu-col span="8">
-                    <div class="time-loadbar" style="margin-top: 13px">
-                        <div class="time-bar" :style="'width:'+progress+'%'"></div>
-                    </div>
-                </mu-col>
+        <mu-col span="8">
+          <div class="time-loadbar" style="margin-top: 13px">
+            <div class="time-bar" :style="'width:'+progress+'%'"></div>
+          </div>
+        </mu-col>
 
-                <mu-col span="2">
-                    <mu-avatar style="float: right">
-                        <img src="https://muse-ui.org/img/uicon.ac3913bf.jpg"/>
-                    </mu-avatar>
-                </mu-col>
-            </mu-row>
-            <mu-row>
-                123
-            </mu-row>
-        </div>
+        <mu-col span="2">
+          <mu-badge style="float: right" content="78" circle color="secondary">
+            <mu-avatar style="float: right">
+              <img src="https://atts.w3cschool.cn/attachments/cover/cover_go.png?imageView2/1/w/64/h/64&t=1569050561"/>
+            </mu-avatar>
+          </mu-badge>
+          <br><br>
+          <a style="color: #ffffff;float: right">唐马撸</a>
+        </mu-col>
+      </mu-row>
+      <mu-row>
 
-        <div class="content">
-            <br><br><br>
+      </mu-row>
+    </div>
 
-
-
-
-        </div>
-        <div class="items">
-            <mu-flex justify-content="center">
-                <h3 style="margin: 15px">世界上最小的国家是世界上最小的国家是世界上最小的国家是世界上最小的国家是</h3>
-            </mu-flex><br><br><br>
-            <mu-flex justify-content="center">
-                <mu-button @click="itemA" :color="colorA" style="width: 80%;height: 60px;">美国</mu-button>
-            </mu-flex>
-            <br>
-            <mu-flex justify-content="center">
-                <mu-button @click="itemB" :color="colorB" style="width: 80%;height: 60px;">梵蒂冈</mu-button>
-            </mu-flex>
-            <br>
-            <mu-flex justify-content="center">
-                <mu-button @click="itemC" :color="colorC" style="width: 80%;height: 60px;">小日本</mu-button>
-            </mu-flex>
-            <br>
-            <mu-flex justify-content="center">
-                <mu-button @click="itemD" :color="colorD" style="width: 80%;height: 60px;">秘鲁</mu-button>
-            </mu-flex>
-        </div>
+    <div class="content">
+      <br><br><br>
 
 
     </div>
+    <div class="items">
+      <mu-flex justify-content="center">
+        <h3 style="margin: 15px;color: white;">世界上最小的国家是世界上最小的国家是世界上最小的国家是世界上最小的国家是</h3>
+      </mu-flex>
+      <br><br><br>
+      <mu-flex justify-content="center">
+        <mu-button @click="itemA" :color="colorA" style="width: 80%;height: 60px;">美国</mu-button>
+      </mu-flex>
+      <br>
+      <mu-flex justify-content="center">
+        <mu-button @click="itemB" :color="colorB" style="width: 80%;height: 60px;">梵蒂冈</mu-button>
+      </mu-flex>
+      <br>
+      <mu-flex justify-content="center">
+        <mu-button @click="itemC" :color="colorC" style="width: 80%;height: 60px;">小日本</mu-button>
+      </mu-flex>
+      <br>
+      <mu-flex justify-content="center">
+        <mu-button @click="itemD" :color="colorD" style="width: 80%;height: 60px;">秘鲁</mu-button>
+      </mu-flex>
+    </div>
+
+
+  </div>
 </template>
 
 <script>
@@ -106,84 +113,88 @@
 </script>
 
 <style scoped lang="less">
-    .contest-single-page {
+  .contest-single-page {
 
-        .bg-color {
-            position: fixed;
-            margin-top: -15px;
-            width: 100%;
-            height: 100%;
-            background-color: #eeeeee;
-            z-index: -999;
-        }
-
-        .header-bar {
-            margin: 15px;
-        }
-
-        .loadbar {
-            width: 10px;
-            height: 350px;
-            background-color: #8d8d8d;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            position: absolute;
-            bottom: 0;
-        }
-
-        .bar {
-            width: 100%;
-            display: block;
-            font-size: 12px;
-            border-radius: 8px;
-            background-color: #82bb7d;
-            color: #fff;
-            position: absolute;
-            bottom: 0;
-        }
-
-        .right-loadbar {
-            width: 10px;
-            height: 350px;
-            background-color: #8d8d8d;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            position: absolute;
-            right: 0;
-            bottom: 0;
-        }
-
-        .right-bar {
-            width: 100%;
-            display: block;
-            font-size: 12px;
-            border-radius: 8px;
-            background-color: #bb443e;
-            color: #fff;
-            position: absolute;
-            bottom: 0;
-        }
-
-        .time-loadbar {
-            width: 100%;
-            height: 10px;
-            background-color: #8d8d8d;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-        }
-
-        .time-bar {
-            height: 100%;
-            border-radius: 8px;
-            background-color: #6cbb73;
-            color: #6cbb73;
-        }
-
-        .items {
-            height: 100px;
-            width: 100%;
-            position: fixed;
-            bottom: 370px;
-        }
+    .bg-color {
+      position: fixed;
+      /*margin-top: -15px;*/
+      width: 100%;
+      height: 100%;
+      background-color: #453b48;
+      z-index: -999;
     }
+
+    .header-bar {
+      padding: 15px;
+      /*background: #8CC7B5;*/
+      /*background: #96d0be;*/
+    }
+
+    .loadbar {
+      width: 10px;
+      height: 350px;
+      margin: 2px;
+      background-color: #000000;
+      /*border: 1px solid #ccc;*/
+      border-radius: 8px;
+      position: absolute;
+      bottom: 0;
+    }
+
+    .bar {
+      width: 100%;
+      display: block;
+      font-size: 12px;
+      border-radius: 8px;
+      background-color: #82bb7d;
+      color: #fff;
+      position: absolute;
+      bottom: 0;
+    }
+
+    .right-loadbar {
+      width: 10px;
+      height: 350px;
+        margin: 2px;
+      background-color: #000000;
+      /*border: 1px solid #ccc;*/
+      border-radius: 8px;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+    }
+
+    .right-bar {
+      width: 100%;
+      display: block;
+      font-size: 12px;
+      border-radius: 8px;
+      background-color: #bb443e;
+      color: #fff;
+      position: absolute;
+      bottom: 0;
+    }
+
+    .time-loadbar {
+      width: 100%;
+      height: 10px;
+      background-color: #8d8d8d;
+      /*border: 1px solid #ccc;*/
+      border-radius: 8px;
+    }
+
+    .time-bar {
+      height: 100%;
+      border-radius: 8px;
+      background-color: #6cbb73;
+      color: #6cbb73;
+    }
+
+    .items {
+      height: 100px;
+      width: 100%;
+      position: fixed;
+      bottom: 370px;
+    }
+  }
 </style>

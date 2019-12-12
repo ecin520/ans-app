@@ -1,13 +1,13 @@
 <template>
     <div class="home-page">
         <div class="title-bar">
-            <mu-appbar style="width: 100%;" color="#ba68c8">
+            <mu-appbar style="width: 100%;" color="#97c872">
                 <mu-button @click="open = true" icon slot="left">
                     <mu-icon value="menu"></mu-icon>
                 </mu-button>
                 {{title}}
             </mu-appbar>
-            <mu-tabs :value.sync="active" color="#ba68c8" indicator-color="#ba68c8" full-width>
+            <mu-tabs :value.sync="active" color="#97c872" indicator-color="#97c872" full-width>
                 <mu-tab>主题</mu-tab>
                 <mu-tab>出题榜</mu-tab>
                 <mu-tab>排名</mu-tab>

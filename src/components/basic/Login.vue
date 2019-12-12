@@ -83,7 +83,7 @@
         position: absolute;
         width: 100%;
         height: 100%;
-        background: #ba68c8;
+        background: #97c872;
     }
 
     .login-btn {

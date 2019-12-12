@@ -7,10 +7,10 @@
 <!--            <a style="text-align: center">脑筋急转弯</a>-->
 <!--        </mu-appbar>-->
         <mu-appbar style="width: 100%;" color="white">
-            <mu-button icon slot="left" @click="back" color="#ba68c8">
+            <mu-button icon slot="left" @click="back" color="#97c872">
                 <mu-icon value="arrow_back"></mu-icon>
             </mu-button>
-            <a style="color: #ba68c8">{{type.type_name}}</a>
+            <a style="color: #97c872">{{type.type_name}}</a>
         </mu-appbar>
 
 

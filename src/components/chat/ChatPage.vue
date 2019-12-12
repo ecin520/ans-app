@@ -1,13 +1,13 @@
 <template>
     <div class="chat-page">
         <div class="title-bar">
-            <mu-appbar style="width: 100%;" color="#ba68c8">
+            <mu-appbar style="width: 100%;" color="#97c872">
                 <mu-button @click="open = true" icon slot="left">
                     <mu-icon value="menu"></mu-icon>
                 </mu-button>
                 {{title}}
             </mu-appbar>
-            <mu-tabs style="margin-bottom: -8px" :value.sync="active" color="#ba68c8" indicator-color="#ba68c8" full-width>
+            <mu-tabs style="margin-bottom: -8px" :value.sync="active" color="#97c872" indicator-color="#97c872" full-width>
                 <mu-tab>消息</mu-tab>
                 <mu-tab>联系人</mu-tab>
                 <mu-tab>发现</mu-tab>

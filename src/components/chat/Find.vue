@@ -45,7 +45,7 @@
 
     <mu-drawer right width="100%" :docked="true" :open.sync="dynamicOpen">
       <mu-row>
-        <mu-button @click="dynamicOpen = false" style="float: left" icon color="#ba68c8">
+        <mu-button @click="dynamicOpen = false" style="float: left" icon color="#97c872">
           <mu-icon value="arrow_back"></mu-icon>
         </mu-button>
         <p>

@@ -3,13 +3,13 @@
 
 
         <div class="title-bar">
-          <mu-appbar style="width: 100%;" color="#ba68c8">
+          <mu-appbar style="width: 100%;" color="#97c872">
             <mu-button @click="open = true" icon slot="left">
               <mu-icon value="menu"></mu-icon>
             </mu-button>
             {{title}}
           </mu-appbar>
-          <mu-tabs color="#ba68c8" indicator-color="#ba68c8" full-width>
+          <mu-tabs color="#97c872" indicator-color="#97c872" full-width>
             <mu-tab>
               <!--                    <mu-icon value="line_style"></mu-icon>-->
               <!--                    Make your choice-->
@@ -21,7 +21,7 @@
         <scroller>
           <br><br><br><br><br><br>
         <mu-drawer width="100%" :docked="true" :open.sync="open">
-          <mu-button @click="open = false" style="float: right" icon color="#ba68c8">
+          <mu-button @click="open = false" style="float: right" icon color="#97c872">
             <mu-icon value="home"></mu-icon>
           </mu-button>
         </mu-drawer>

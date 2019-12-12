@@ -1,6 +1,6 @@
 <template>
     <div class="register">
-        <mu-appbar style="width: 100%;" color="#ba68c8">
+        <mu-appbar style="width: 100%;" color="#97c872">
             <mu-button icon slot="left" @click="backLogin">
                 <mu-icon value="arrow_back"></mu-icon>
             </mu-button>
@@ -27,7 +27,7 @@
             </div>
         </mu-container>
         <mu-flex justify-content="center">
-            <mu-button @click="registerClick" color=" #ba68c8">
+            <mu-button @click="registerClick" color=" #97c872">
                 注册
                 <mu-icon right value="send"></mu-icon>
             </mu-button>
