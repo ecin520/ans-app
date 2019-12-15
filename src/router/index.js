@@ -17,6 +17,8 @@ import TypeIntroduce from "../components/single/TypeIntroduce";
 
 import FriendCard from "../components/single/FriendCard";
 
+import WaitingPage from "../components/single/WaitingPage";
+
 Vue.use(Router);
 
 export default new Router({
@@ -72,6 +74,11 @@ export default new Router({
             path: '/FriendCard',
             name: 'FriendCard',
             component: FriendCard
+        },
+        {
+            path: '/WaitingPage',
+            name: 'WaitingPage',
+            component: WaitingPage
         }
 
     ]

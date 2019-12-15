@@ -58,7 +58,7 @@
                 this.$router.go(-1);
             },
             contestIn() {
-                this.$router.push({name: 'ContestSinglePage'});
+                this.$router.push({name: 'WaitingPage'});
             }
         },
         mounted() {
