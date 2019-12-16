@@ -58,7 +58,7 @@
                 this.$router.go(-1);
             },
             contestIn() {
-                this.$router.push({name: 'WaitingPage'});
+                this.$router.push({name: 'WaitingPage', params: {type_name: this.$route.params.type_name}});
             }
         },
         mounted() {
