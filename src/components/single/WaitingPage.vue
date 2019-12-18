@@ -150,6 +150,7 @@
                     }
                 ],
                 currentItem: {
+                    id: '',
                     item_a: '',
                     item_b: '',
                     item_c: '',
@@ -170,100 +171,148 @@
                 opponentLocked: false,
                 currentIndex: '',
                 selfScore: 0,
+                opponentScore: 0,
                 opponentItem: {
                     'selectItem': '',
                     'correctItem': ''
                 },
-                opponentScore: 0,
-                timer: null
+                timer: null,
+                statistics: false,
+                contestData: {
+                    'user_a': '',
+                    'user_b': '',
+                    'contest_type': '',
+                    'win_id': ''
+                },
+                contestRecord: [],
+                currentSelfAns: false,
+                currentOpponentAns: false
             }
         },
         methods: {
             itemA() {
 
                 if (!this.locked) {
+
+                    if (this.questions[this.currentIndex].item_ans === 'A') {
+                        this.selfScore += 20;
+                        // 自己答题准确
+                        this.currentSelfAns = true;
+
+                        this.colorA = 'success';
+                    } else {
+                        // 自己答题失败
+                        this.currentSelfAns = false;
+                        this.colorA = 'error';
+                    }
+
                     let select = {
                         'sendId': this.userId,
                         'opponentId': this.opponentId,
                         'contestId': this.contestId,
                         'select_item': 'A',
-                        'name': 'matching'
+                        'name': 'matching',
+                        'score': this.selfScore
                     };
                     this.ws.send(JSON.stringify(select));
-                    if (this.questions[this.currentIndex].item_ans === 'A') {
-                        this.selfScore += 20;
-                        this.locked = true;
-                        this.colorA = 'success';
-                    } else {
-                        this.colorA = 'error';
-                    }
 
+                    this.locked = true;
                 }
 
             },
             itemB() {
 
                 if (!this.locked) {
+
+                    if (this.questions[this.currentIndex].item_ans === 'B') {
+                        this.selfScore += 20;
+
+                        // 自己答题准确
+                        this.currentSelfAns = true;
+
+                        this.colorB = 'success';
+                    } else {
+
+                        // 自己答题失败
+                        this.currentSelfAns = false;
+
+                        this.colorB = 'error';
+                    }
+
                     let select = {
                         'sendId': this.userId,
                         'opponentId': this.opponentId,
                         'contestId': this.contestId,
                         'select_item': 'B',
-                        'name': 'matching'
+                        'name': 'matching',
+                        'score': this.selfScore
                     };
                     this.ws.send(JSON.stringify(select));
-                    if (this.questions[this.currentIndex].item_ans === 'B') {
-                        this.selfScore += 20;
-                        this.locked = true;
-                        this.colorB = 'success';
-                    } else {
-                        this.colorB = 'error';
-                    }
 
+                    this.locked = true;
                 }
 
             },
             itemC() {
 
                 if (!this.locked) {
+
+                    if (this.questions[this.currentIndex].item_ans === 'C') {
+                        this.selfScore += 20;
+
+                        // 自己答题准确
+                        this.currentSelfAns = true;
+
+                        this.colorC = 'success';
+                    } else {
+
+                        // 自己答题失败
+                        this.currentSelfAns = false;
+
+                        this.colorC = 'error';
+                    }
                     let select = {
                         'sendId': this.userId,
                         'opponentId': this.opponentId,
                         'contestId': this.contestId,
                         'select_item': 'C',
-                        'name': 'matching'
+                        'name': 'matching',
+                        'score': this.selfScore
                     };
                     this.ws.send(JSON.stringify(select));
-                    if (this.questions[this.currentIndex].item_ans === 'C') {
-                        this.selfScore += 20;
-                        this.locked = true;
-                        this.colorC = 'success';
-                    } else {
-                        this.colorC = 'error';
-                    }
-
+                    this.locked = true;
                 }
 
             },
             itemD() {
 
                 if (!this.locked) {
+
+                    if (this.questions[this.currentIndex].item_ans === 'D') {
+                        this.selfScore += 20;
+
+                        // 自己答题准确
+                        this.currentSelfAns = true;
+
+                        this.colorD = 'success';
+                    } else {
+
+                        // 自己答题失败
+                        this.currentSelfAns = false;
+
+                        this.colorD = 'error';
+                    }
+
                     let select = {
                         'sendId': this.userId,
                         'opponentId': this.opponentId,
                         'contestId': this.contestId,
                         'select_item': 'D',
-                        'name': 'matching'
+                        'name': 'matching',
+                        'score': this.selfScore
                     };
                     this.ws.send(JSON.stringify(select));
-                    if (this.questions[this.currentIndex].item_ans === 'D') {
-                        this.selfScore += 20;
-                        this.locked = true;
-                        this.colorD = 'success';
-                    } else {
-                        this.colorD = 'error';
-                    }
-
+                    this.locked = true;
                 }
 
             },
@@ -284,8 +333,12 @@
                 this.ws.onmessage = function (event) {
 
                     let respData = JSON.parse(event.data);
-                    // console.log(respData);
+                    console.log(respData);
                     if (respData.hasOwnProperty("contest_id") && respData.hasOwnProperty("questions")) {
+
+                        if (respData['statistics'] === 'true') {
+                            _this.statistics = true;
+                        }
 
                         _this.contestId = respData['contest_id'];
 
@@ -315,6 +368,9 @@
                         });
 
                     } else if(respData['name'] === 'matching' && respData['sendId'] === _this.opponentId) {
+
+                        _this.opponentScore = respData['score'];
+
                         switch (respData['select_item']) {
                             case 'A':
                                 if (_this.questions[_this.currentIndex].item_ans === 'A') {
@@ -322,11 +378,13 @@
                                         'selectItem': 'A',
                                         'correctItem': 'A'
                                     };
+                                    _this.currentOpponentAns = true;
                                 } else {
                                     _this.opponentItem = {
                                         'selectItem': 'A',
                                         'correctItem': _this.questions[_this.currentIndex].item_ans
                                     };
+                                    _this.currentOpponentAns = false;
                                 }
                                 break;
                             case 'B':
@@ -335,11 +393,13 @@
                                         'selectItem': 'B',
                                         'correctItem': 'B'
                                     };
+                                    _this.currentOpponentAns = true;
                                 } else {
                                     _this.opponentItem = {
                                         'selectItem': 'B',
                                         'correctItem': _this.questions[_this.currentIndex].item_ans
                                     };
+                                    _this.currentOpponentAns = false;
                                 }
                                 break;
                             case 'C':
@@ -348,11 +408,13 @@
                                         'selectItem': 'C',
                                         'correctItem': 'C'
                                     };
+                                    _this.currentOpponentAns = true;
                                 } else {
                                     _this.opponentItem = {
                                         'selectItem': 'C',
                                         'correctItem': _this.questions[_this.currentIndex].item_ans
                                     };
+                                    _this.currentOpponentAns = false;
                                 }
                                 break;
                             case 'D':
@@ -361,11 +423,13 @@
                                         'selectItem': 'D',
                                         'correctItem': 'D'
                                     };
+                                    _this.currentOpponentAns = true;
                                 } else {
                                     _this.opponentItem = {
                                         'selectItem': 'D',
                                         'correctItem': _this.questions[_this.currentIndex].item_ans
                                     };
+                                    _this.currentOpponentAns = false;
                                 }
                                 break;
                         }
@@ -375,25 +439,10 @@
 
                 }
             },
-            question1() {
-
-            },
-            question2() {
-
-            },
-            question3() {
-
-            },
-            question4() {
-
-            },
-            question5() {
-
-            },
             countDown() {
 
-                this.timmer = setInterval(() => {
-                    this.progress += 0.1;
+                this.timer = setInterval(() => {
+                    this.progress += 1;
                     if (this.progress >= 100 && this.progress < 130) {
 
                         if (this.opponentItem['selectItem'] === this.opponentItem['correctItem']) {
@@ -427,12 +476,61 @@
                                     break;
                             }
                         }
+                        if (this.progress === 120 ) {
+
+                            let obj = {};
+                            if (this.currentSelfAns === true && this.currentOpponentAns === true) {
+                                obj = {
+                                    'contest_id': this.contestId,
+                                    'question_id': this.currentItem['id'],
+                                    'win_id': 1
+                                }
+                            } else if (this.currentSelfAns === true && this.currentOpponentAns === false) {
+                                obj = {
+                                    'contest_id': this.contestId,
+                                    'question_id': this.currentItem['id'],
+                                    'win_id': this.userId
+                                }
+                            } else if (this.currentSelfAns === false && this.currentOpponentAns === true) {
+                                obj = {
+                                    'contest_id': this.contestId,
+                                    'question_id': this.currentItem['id'],
+                                    'win_id': this.opponentId
+                                }
+                            } else if (this.currentSelfAns === false && this.currentOpponentAns === false) {
+                                obj = {
+                                    'contest_id': this.contestId,
+                                    'question_id': this.currentItem['id'],
+                                    'win_id': 0
+                                }
+                            }
+
+                            this.$axios({
+                                url: '/api/client/contestRecord/insertContestRecord',
+                                method: 'post',
+                                data: {
+                                    'contest_id': obj['contest_id'],
+                                    'question_id': obj['question_id'],
+                                    'win_id': obj['win_id']
+                                }
+                            }).then(response => {
+                                console.log(response.data);
+                            }).catch(error => {
+                                console.log(error);
+                            });
+
+                            this.contestRecord.push(obj);
+                            console.log(this.contestRecord)
+
+                        }
+
 
                     }
+
                     if (this.progress >= 130) {
                         this.progress = 0;
                     }
-                }, 10);
+                }, 100);
             },
             beginContest() {
 
@@ -443,6 +541,9 @@
                     setTimeout(() => {
 
                         this.countDown();
+
+                        this.currentSelfAns = false;
+                        this.currentOpponentAns = false;
 
                         this.opponentItem = {};
                         this.locked = false;
@@ -455,6 +556,10 @@
 
 
                         setTimeout(() => {
+
+                            this.currentSelfAns = false;
+                            this.currentOpponentAns = false;
+
                             this.opponentItem = {};
                             this.locked = false;
                             this.currentIndex = 1;
@@ -467,6 +572,10 @@
 
 
                             setTimeout(() => {
+
+                                this.currentSelfAns = false;
+                                this.currentOpponentAns = false;
+
                                 this.opponentItem = {};
                                 this.locked = false;
                                 this.currentIndex = 2;
@@ -477,6 +586,10 @@
                                 this.currentItem = this.questions[2];
 
                                 setTimeout(() => {
+
+                                    this.currentSelfAns = false;
+                                    this.currentOpponentAns = false;
+
                                     this.opponentItem = {};
                                     this.locked = false;
                                     this.currentIndex = 3;
@@ -487,6 +600,10 @@
                                     this.currentItem = this.questions[3];
 
                                     setTimeout(() => {
+
+                                        this.currentSelfAns = false;
+                                        this.currentOpponentAns = false;
+
                                         this.opponentItem = {};
                                         this.locked = false;
                                         this.currentIndex = 4;
@@ -495,6 +612,46 @@
                                         this.colorC = 'white';
                                         this.colorD = 'white';
                                         this.currentItem = this.questions[4];
+
+                                        setTimeout(() => {
+
+                                            let user_a = null;
+                                            let user_b = null;
+                                            let win_id = null;
+
+                                            if (this.statistics === true) {
+                                                user_a = this.userId;
+                                                user_b = this.opponentId;
+                                            } else {
+                                                user_a = this.opponentId;
+                                                user_b = this.userId;
+                                            }
+
+                                            if (this.selfScore === this.opponentScore) {
+                                                win_id = 1;
+                                            } else if (this.selfScore > this.opponentScore) {
+                                                win_id = this.userId;
+                                            } else if (this.selfScore < this.opponentScore) {
+                                                win_id = this.opponentId;
+                                            }
+
+                                            this.$axios({
+                                                url: '/api/client/contest/insertContest',
+                                                method: 'post',
+                                                data: {
+                                                    'id': this.contestId,
+                                                    'user_a': user_a,
+                                                    'user_b': user_b,
+                                                    'contest_type': this.contest_type,
+                                                    'win_id': win_id
+                                                }
+
+                                            });
+
+                                            this.$router.push({name: 'HomePage'});
+
+                                        }, 13000);
+
                                     }, 13000);
 
                                 }, 13000);
@@ -537,7 +694,21 @@
 
         },
         destroyed() {
+            clearInterval(this.timer);
             this.ws.close();
+
+        },
+        beforeDestroy() {
+            //清除定时器
+            clearInterval(this.timer);
+        },
+        watch: {
+            progress(val) {
+                if (val > 100) {
+                    this.locked = true;
+                }
+
+            }
         }
     }
 </script>
@@ -613,7 +784,7 @@
       display: block;
       font-size: 12px;
       border-radius: 8px;
-      background-color: #bb443e;
+      background-color: #82bb7d;
       color: #fff;
       position: absolute;
       bottom: 0;
