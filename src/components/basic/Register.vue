@@ -1,6 +1,6 @@
 <template>
     <div class="register">
-        <mu-appbar style="width: 100%;" color="#97c872">
+        <mu-appbar style="width: 100%;" :color="this.$store.state.themColor">
             <mu-button icon slot="left" @click="backLogin">
                 <mu-icon value="arrow_back"></mu-icon>
             </mu-button>
@@ -27,7 +27,7 @@
             </div>
         </mu-container>
         <mu-flex justify-content="center">
-            <mu-button @click="registerClick" color=" #97c872">
+            <mu-button @click="registerClick" :color="this.$store.state.themColor">
                 注册
                 <mu-icon right value="send"></mu-icon>
             </mu-button>
@@ -57,7 +57,7 @@
                         'password': this.password
                     }
                 }).then(response => {
-                    this.$toast.success(response.data['message'].toString())
+                    this.$toast.success(response.data['message'].toString());
                     this.$router.push({path: '/Login'});
                 }).catch(error => {
                     this.$toast.success(error.toString())

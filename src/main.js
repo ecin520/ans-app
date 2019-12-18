@@ -11,6 +11,8 @@ import animate from 'animate.css'
 import VueScroller from 'vue-scroller'
 import cookies from 'vue-cookies' //导入
 
+import store from './store'
+
 Vue.use(cookies);
 Vue.use(VueScroller);
 Vue.use(animate);
@@ -24,6 +26,7 @@ Vue.config.productionTip = false;
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

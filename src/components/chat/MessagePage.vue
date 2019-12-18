@@ -2,7 +2,7 @@
     <div class="message-page">
 
         <mu-drawer width="90%" :open.sync="messageNotice">
-            <mu-button @click="messageNotice = false" style="float: right" icon color="#97c872">
+            <mu-button @click="messageNotice = false" style="float: right" icon :color="this.$store.state.themColor">
                 <mu-icon value="clear"></mu-icon>
             </mu-button>
             <mu-list>

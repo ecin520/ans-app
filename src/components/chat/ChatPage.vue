@@ -1,13 +1,13 @@
 <template>
     <div class="chat-page">
         <div class="title-bar">
-            <mu-appbar style="width: 100%;" color="#97c872">
+            <mu-appbar style="width: 100%;" :color="this.$store.state.themColor">
                 <mu-button @click="open = true" icon slot="left">
                     <mu-icon value="menu"></mu-icon>
                 </mu-button>
                 {{title}}
             </mu-appbar>
-            <mu-tabs style="margin-bottom: -8px" :value.sync="active" color="#97c872" indicator-color="#97c872" full-width>
+            <mu-tabs style="margin-bottom: -8px" :value.sync="active" :color="this.$store.state.themColor" :indicator-color="this.$store.state.themColor" full-width>
                 <mu-tab>消息</mu-tab>
                 <mu-tab>联系人</mu-tab>
                 <mu-tab>发现</mu-tab>
@@ -16,7 +16,7 @@
 
 
         <mu-drawer width="100%" :docked="true" :open.sync="open">
-            <mu-appbar style="width: 100%;" color="#97c872">
+            <mu-appbar style="width: 100%;" :color="this.$store.state.themColor">
                 <mu-button @click="open = false" style="float: right" icon color="white">
                     <mu-icon value="home"></mu-icon>
                 </mu-button>

@@ -19,6 +19,9 @@ import FriendCard from "../components/single/FriendCard";
 
 import WaitingPage from "../components/single/WaitingPage";
 
+import ContestResultPage from "../components/single/ContestResultPage";
+import DevoteQuestion from "../components/single/DevoteQuestion";
+
 Vue.use(Router);
 
 export default new Router({
@@ -79,7 +82,16 @@ export default new Router({
             path: '/WaitingPage',
             name: 'WaitingPage',
             component: WaitingPage
+        },
+        {
+            path: '/ContestResultPage',
+            name: 'ContestResultPage',
+            component: ContestResultPage
+        },
+        {
+            path: '/DevoteQuestion',
+            name: 'DevoteQuestion',
+            component: DevoteQuestion
         }
-
     ]
 })

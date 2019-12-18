@@ -7,7 +7,7 @@
 <!--            <a style="text-align: center">脑筋急转弯</a>-->
 <!--        </mu-appbar>-->
         <mu-appbar style="width: 100%;" color="white">
-            <mu-button icon slot="left" @click="back" color="#97c872">
+            <mu-button icon slot="left" @click="back" :color="this.$store.state.themColor">
                 <mu-icon value="arrow_back"></mu-icon>
             </mu-button>
             <a style="color: #97c872">{{type.type_name}}</a>

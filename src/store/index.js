@@ -5,7 +5,8 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
     state: {
-        userId: ''
+        userId: '',
+        themColor: '#453b48'
     }
 });
 export default store;

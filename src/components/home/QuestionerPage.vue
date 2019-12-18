@@ -1,7 +1,7 @@
 <template>
     <div class="questioner-page">
 
-        <mu-button color="#97c872" large full-width style="text-align: center;font-size: 20px;margin-top: -5px;">
+        <mu-button :color="this.$store.state.themColor" large full-width style="text-align: center;font-size: 20px;margin-top: -5px;">
             <mu-icon value="face"></mu-icon>
             出题人排行榜
         </mu-button>

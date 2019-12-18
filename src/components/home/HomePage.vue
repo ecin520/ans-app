@@ -1,13 +1,14 @@
 <template>
     <div class="home-page">
+<!--        <div class="bg-color"></div>-->
         <div class="title-bar">
-            <mu-appbar style="width: 100%;" color="#97c872">
+            <mu-appbar style="width: 100%;" :color="this.$store.state.themColor">
                 <mu-button @click="open = true" icon slot="left">
                     <mu-icon value="menu"></mu-icon>
                 </mu-button>
                 {{title}}
             </mu-appbar>
-            <mu-tabs :value.sync="active" color="#97c872" indicator-color="#97c872" full-width>
+            <mu-tabs :value.sync="active" :color="this.$store.state.themColor" :indicator-color="this.$store.state.themColor" full-width>
                 <mu-tab>主题</mu-tab>
                 <mu-tab>出题榜</mu-tab>
                 <mu-tab>排名</mu-tab>
@@ -16,7 +17,7 @@
 
 
         <mu-drawer width="100%" :docked="true" :open.sync="open">
-            <mu-appbar style="width: 100%;" color="#97c872">
+            <mu-appbar style="width: 100%;" :color="this.$store.state.themColor">
                 <mu-button @click="open = false" style="float: right" icon color="white">
                     <mu-icon value="home"></mu-icon>
                 </mu-button>
@@ -64,6 +65,8 @@
         },
         mounted() {
 
+            // console.log(this.$store.state.themColor)
+
             /*获取自己id*/
             this.$axios({
                 url: '/api/client/user/getUserByUsername',
@@ -84,6 +87,16 @@
 </script>
 
 <style scoped>
+
+    .bg-color {
+        position: fixed;
+        /*margin-top: -15px;*/
+        width: 100%;
+        height: 100%;
+        background-color: #746677;
+        z-index: -999;
+    }
+
     .title-bar {
         position: sticky;
         top: 0;
