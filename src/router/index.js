@@ -24,7 +24,7 @@ import DevoteQuestion from "../components/single/DevoteQuestion";
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
     routes: [
         {
             path: '/',
@@ -46,7 +46,15 @@ export default new Router({
                     name: 'ContestPage',
                     component: ContestPage
                 }
-            ]
+            ],
+            beforeEnter: (to, from, next) => {
+                let isLogin = router.app.$cookies.get('isLogin');
+                if (isLogin === null) {
+                    router.push('/');
+                } else if( isLogin === 'ecin520') {
+                    next();
+                }
+            }
         },
         {
             path: '/Login',
@@ -61,37 +69,96 @@ export default new Router({
         {
             path: '/ChatPageSingle',
             name: 'ChatPageSingle',
-            component: ChatPageSingle
+            component: ChatPageSingle,
+            beforeEnter: (to, from, next) => {
+                let isLogin = router.app.$cookies.get('isLogin');
+                if (isLogin === null) {
+                    router.push('/');
+                } else if( isLogin === 'ecin520') {
+                    next();
+                }
+            }
         },
         {
             path: '/ContestSinglePage',
             name: 'ContestSinglePage',
-            component: ContestSinglePage
+            component: ContestSinglePage,
+            beforeEnter: (to, from, next) => {
+                let isLogin = router.app.$cookies.get('isLogin');
+                if (isLogin === null) {
+                    router.push('/');
+                } else if( isLogin === 'ecin520') {
+                    next();
+                }
+            }
         },
         {
             path: '/TypeIntroduce',
             name: 'TypeIntroduce',
-            component: TypeIntroduce
+            component: TypeIntroduce,
+            beforeEnter: (to, from, next) => {
+                let isLogin = router.app.$cookies.get('isLogin');
+                if (isLogin === null) {
+                    router.push('/');
+                } else if( isLogin === 'ecin520') {
+                    next();
+                }
+            }
         },
         {
             path: '/FriendCard',
             name: 'FriendCard',
-            component: FriendCard
+            component: FriendCard,
+            beforeEnter: (to, from, next) => {
+                let isLogin = router.app.$cookies.get('isLogin');
+                if (isLogin === null) {
+                    router.push('/');
+                } else if( isLogin === 'ecin520') {
+                    next();
+                }
+            }
         },
         {
             path: '/WaitingPage',
             name: 'WaitingPage',
-            component: WaitingPage
+            component: WaitingPage,
+            beforeEnter: (to, from, next) => {
+                let isLogin = router.app.$cookies.get('isLogin');
+                if (isLogin === null) {
+                    router.push('/');
+                } else if( isLogin === 'ecin520') {
+                    next();
+                }
+            }
         },
         {
             path: '/ContestResultPage',
             name: 'ContestResultPage',
-            component: ContestResultPage
+            component: ContestResultPage,
+            beforeEnter: (to, from, next) => {
+                let isLogin = router.app.$cookies.get('isLogin');
+                if (isLogin === null) {
+                    router.push('/');
+                } else if( isLogin === 'ecin520') {
+                    next();
+                }
+            }
         },
         {
             path: '/DevoteQuestion',
             name: 'DevoteQuestion',
-            component: DevoteQuestion
+            component: DevoteQuestion,
+            beforeEnter: (to, from, next) => {
+                let isLogin = router.app.$cookies.get('isLogin');
+                if (isLogin === null) {
+                    router.push('/');
+                } else if( isLogin === 'ecin520') {
+                    next();
+                }
+            }
         }
     ]
-})
+});
+export default router;
+
+
