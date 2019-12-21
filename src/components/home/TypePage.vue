@@ -5,48 +5,50 @@
         </mu-card-media>
 
 
-<!--        <div class="recent">-->
-<!--            <mu-row>-->
-<!--                <mu-col span="4">-->
-<!--                    <mu-button style="width: 95%;height: 82px;color: #fff6fc;margin: 5px;" color="#fbc02d">-->
-<!--                        最近在玩-->
-<!--                    </mu-button>-->
-<!--                </mu-col>-->
-<!--                <mu-col span="4">-->
-<!--                    <mu-button @click="startDialogClick" color="#40c4ff"-->
-<!--                               style="width: 90%;margin: 5px;font-size: smaller;">全能打百科-->
-<!--                    </mu-button>-->
-<!--                    <br>-->
+        <div class="recent">
+            <mu-row>
+                <mu-col span="4">
+                    <mu-button style="width: 95%;height: 82px;color: #fff6fc;margin: 5px;" color="#fbc02d">
+                        最近在玩
+                    </mu-button>
+                </mu-col>
+                <mu-col span="4">
+                    <mu-button @click="typeClick('全能百科')" color="#40c4ff"
+                               style="width: 90%;margin: 5px;font-size: smaller;">全能百科
+                    </mu-button>
+                    <br>
+                    <mu-button @click="typeClick('经典文学')" color="#40c4ff" style="width: 90%;margin: 5px;font-size: smaller;">经典文学</mu-button>
+                </mu-col>
+                <mu-col span="4">
+                    <mu-button @click="typeClick('脑经急转弯')" color="#40c4ff" style="width: 90%;margin: 5px;font-size: smaller;">脑经急转弯</mu-button>
+                    <br>
 <!--                    <mu-button color="#40c4ff" style="width: 90%;margin: 5px;font-size: smaller;">全能百科</mu-button>-->
-<!--                </mu-col>-->
-<!--                <mu-col span="4">-->
-<!--                    <mu-button color="#40c4ff" style="width: 90%;margin: 5px;font-size: smaller;">全能百科</mu-button>-->
-<!--                    <br>-->
-<!--                    <mu-button color="#40c4ff" style="width: 90%;margin: 5px;font-size: smaller;">全能百科</mu-button>-->
-<!--                </mu-col>-->
-<!--            </mu-row>-->
-<!--        </div>-->
+                </mu-col>
+            </mu-row>
+        </div>
 
-<!--        <div class="hot">-->
-<!--            <mu-row>-->
-<!--                <mu-col span="4">-->
-<!--                    <mu-button style="width: 95%;height: 82px;color: #fff6fc;margin: 5px;font-size: smaller;"-->
-<!--                               color="#ff71bf">-->
-<!--                        热门推荐-->
-<!--                    </mu-button>-->
-<!--                </mu-col>-->
-<!--                <mu-col span="4">-->
-<!--                    <mu-button color="#81c784" style="width: 90%;margin: 5px;font-size: smaller;">全能百科</mu-button>-->
-<!--                    <br>-->
-<!--                    <mu-button color="#81c784" style="width: 90%;margin: 5px;font-size: smaller;">全能百科</mu-button>-->
-<!--                </mu-col>-->
-<!--                <mu-col span="4">-->
-<!--                    <mu-button color="#81c784" style="width: 90%;margin: 5px;font-size: smaller;">全能百科</mu-button>-->
-<!--                    <br>-->
-<!--                    <mu-button color="#81c784" style="width: 90%;margin: 5px;font-size: smaller;">全能百科</mu-button>-->
-<!--                </mu-col>-->
-<!--            </mu-row>-->
-<!--        </div>-->
+        <div class="hot">
+            <mu-row>
+                <mu-col span="4">
+                    <mu-button style="width: 95%;height: 82px;color: #fff6fc;margin: 5px;font-size: smaller;"
+                               color="#ef5350">
+                        热门推荐
+                    </mu-button>
+                </mu-col>
+                <mu-col span="4">
+                    <mu-button @click="typeClick('全能百科')" color="#ff8a65"
+                               style="width: 90%;margin: 5px;font-size: smaller;">全能百科
+                    </mu-button>
+                    <br>
+                    <mu-button @click="typeClick('经典文学')" color="#ff8a65" style="width: 90%;margin: 5px;font-size: smaller;">经典文学</mu-button>
+                </mu-col>
+                <mu-col span="4">
+                    <mu-button @click="typeClick('脑经急转弯')" color="#ff8a65" style="width: 90%;margin: 5px;font-size: smaller;">脑经急转弯</mu-button>
+                    <br>
+                    <!--                    <mu-button color="#40c4ff" style="width: 90%;margin: 5px;font-size: smaller;">全能百科</mu-button>-->
+                </mu-col>
+            </mu-row>
+        </div>
 
 <!--        <div class="update">-->
 <!--            <mu-row>-->

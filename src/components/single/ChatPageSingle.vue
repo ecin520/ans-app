@@ -22,7 +22,7 @@
                     <div :class="{'other-avatar': item.status === 2,'self-avatar': item.status === 1}">
                         <mu-avatar>
                             <img v-if="item.status === 1" :src="selfAvatar"/>
-                            <img v-if="item.status === 2" :src="avatarUrl"/>
+                            <img @click="showFriendInfo" v-if="item.status === 2" :src="avatarUrl"/>
                         </mu-avatar>
                     </div>
                     <span>{{item.content}}</span>
@@ -96,6 +96,9 @@
         methods: {
             back() {
                 this.$router.go(-1);
+            },
+            showFriendInfo() {
+                this.$router.push({name: 'FriendCard', params: {friendId: this.$route.params.otherId}});
             },
             async send() {
                 let chat = {

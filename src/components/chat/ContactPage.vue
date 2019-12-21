@@ -15,7 +15,7 @@
                 </mu-text-field>
             </mu-col>
             <mu-col span="4">
-                <mu-button color="success" flat @click="searchFriend" small>搜索好友</mu-button>
+                <mu-button color="success" flat @click="searchFriend" >搜索好友</mu-button>
             </mu-col>
 
         </mu-list-item>
@@ -46,13 +46,7 @@
         name: "ContactPage",
         data() {
             return {
-                user: [
-                    {
-                        id: '',
-                        avatar_url: '',
-                        nickname: ''
-                    }
-                ],
+                user: [],
                 friendId: ''
             }
         },

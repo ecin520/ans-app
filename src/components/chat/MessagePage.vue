@@ -6,7 +6,9 @@
                 <mu-icon value="clear"></mu-icon>
             </mu-button>
             <mu-list>
-                <mu-list-item><h3>{{noverification}}</h3></mu-list-item>
+                <mu-list-item>
+                    <h2 style="color: #bcafbc">{{noverification}}</h2>
+                </mu-list-item>
                 <mu-divider></mu-divider>
                 <div class="list-item" v-for="(item, index) in verificationList">
                     <mu-list-item avatar>
@@ -36,8 +38,8 @@
             <mu-list>
                 <mu-list-item avatar button @click="showNotice">
                     &nbsp;
-                    <mu-icon value="speaker_notes"></mu-icon>
-                    <h3>&nbsp;&nbsp;&nbsp;消息通知</h3>
+                    <mu-icon color="firebrick" value="speaker_notes"></mu-icon>
+                    <h3 style="color: firebrick">&nbsp;&nbsp;&nbsp;消息通知</h3>
                 </mu-list-item>
                 <mu-divider></mu-divider>
                 <div v-if="showStatus === true" class="list-item" v-for="(item, index) in messageList">
@@ -162,7 +164,7 @@
                             'shortMessage': '',
                             'badgeCount': ''
                         };
-                        if(this.messageList.filter((item) => {
+                        if (this.messageList.filter((item) => {
                             return item.otherId === response0.data[i].id;
                         }).length === 1) {
                             continue;
@@ -204,7 +206,6 @@
                     }
 
                 });
-
 
 
             }).catch(error => {

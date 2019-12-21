@@ -7,7 +7,7 @@
         </mu-button>
 
         <mu-list>
-            <mu-list-item button v-for="(item, index) in user">
+            <mu-list-item button v-for="(item, index) in user" @click="questionerClick(item)">
                 <h3>{{index+1}}&nbsp;</h3>
                 <mu-list-item-action>
                     <mu-avatar size="38">
@@ -18,7 +18,7 @@
                 <mu-list-item-action>
                     <mu-row>
                         <mu-icon value="sort"></mu-icon>
-                        {{item.question_num}}
+                        {{item.devote_num}}
                     </mu-row>
                 </mu-list-item-action>
             </mu-list-item>
@@ -32,46 +32,25 @@
         name: "QuestionerPage",
         data() {
             return {
-                user: [
-                    {
-                        'nickname': '易小凡',
-                        'avatar_url': 'https://muse-ui.org/img/uicon.ac3913bf.jpg',
-                        question_num: 153
-                    },
-                    {
-                        'nickname': '易小凡',
-                        'avatar_url': 'http://148.70.50.70/source/1573193343018.jpg',
-                        question_num: 63
-                    },
-                    {
-                        'nickname': '易小凡',
-                        'avatar_url': 'http://148.70.50.70/source/1569489728895.jpg',
-                        question_num: 53
-                    },
-                    {
-                        'nickname': '易小凡',
-                        'avatar_url': 'https://muse-ui.org/img/uicon.ac3913bf.jpg',
-                        question_num: 23
-                    },
-                    {
-                        'nickname': '易小凡',
-                        'avatar_url': 'https://muse-ui.org/img/uicon.ac3913bf.jpg',
-                        question_num: 13
-                    },
-                    {
-                        'nickname': '易小凡',
-                        'avatar_url': 'http://148.70.50.70/source/1573193343018.jpg',
-                        question_num: 63
-                    }
-                ],
-                typeData: [
-                    {
-                        type_name: ''
-                    }
-                ]
+                user: []
             }
         },
-        created() {
+        methods: {
+            questionerClick(item) {
+                this.$router.push({name: 'FriendCard', params: {friendId: item.id}});
+            }
+        },
+        mounted() {
+
+            this.$axios({
+                url: '/api/client/user/listUsersByNorPer',
+                method: 'get'
+            }).then(response => {
+                this.user = response.data.sort((x, y) => {
+                    return y.devote_num - x.devote_num;
+                });
+            });
+
         }
     }
 </script>

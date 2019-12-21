@@ -80,7 +80,7 @@
                 </mu-button>
             </mu-appbar>
             <mu-flex justify-content="center">
-                <h1 style="text-align: center">查无此人</h1>
+                <h1 style="text-align: center;color: salmon;">查无此人</h1>
             </mu-flex>
 
         </div>
@@ -111,7 +111,7 @@
         },
         methods: {
             back() {
-                this.$router.go(-1);
+                this.$router.push({name: 'HomePage'});
             },
             addFriend() {
                 this.$axios({
