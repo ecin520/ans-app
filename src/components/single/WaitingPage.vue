@@ -365,6 +365,9 @@
                             _this.opponentAvatar = response.data['avatar_url'];
                             _this.opponentNickname = response.data['nickname'];
                             _this.opponentRank = response.data['rank'];
+
+
+
                             _this.opponentVisible = true;
                             _this.beginContest();
                         }).catch(error => {
@@ -726,6 +729,8 @@
 
         },
         created() {
+
+
 
         },
         destroyed() {

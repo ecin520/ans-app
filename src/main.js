@@ -13,20 +13,23 @@ import cookies from 'vue-cookies' //导入
 
 import store from './store'
 
+import common from './common'
+
 Vue.use(cookies);
 Vue.use(VueScroller);
 Vue.use(animate);
 Vue.use(Toast);
 Vue.use(MuseUI);
+Vue.use(common);
 
 Vue.prototype.$axios = axios;
 Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
 new Vue({
-  el: '#app',
-  router,
-  store,
-  components: { App },
-  template: '<App/>'
+    el: '#app',
+    router,
+    store,
+    components: {App},
+    template: '<App/>'
 })

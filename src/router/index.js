@@ -22,6 +22,8 @@ import WaitingPage from "../components/single/WaitingPage";
 import ContestResultPage from "../components/single/ContestResultPage";
 import DevoteQuestion from "../components/single/DevoteQuestion";
 
+import SettingPage from "../components/setting/SettingPage";
+
 Vue.use(Router);
 
 const router = new Router({
@@ -45,12 +47,17 @@ const router = new Router({
                     path: '/ContestPage',
                     name: 'ContestPage',
                     component: ContestPage
+                },
+                {
+                    path: '/SettingPage',
+                    name: 'SettingPage',
+                    component: SettingPage
                 }
             ],
             beforeEnter: (to, from, next) => {
                 let isLogin = router.app.$cookies.get('isLogin');
                 if (isLogin === null) {
-                    router.push('/');
+                    router.push('/Login');
                 } else if( isLogin === 'ecin520') {
                     next();
                 }
@@ -73,7 +80,7 @@ const router = new Router({
             beforeEnter: (to, from, next) => {
                 let isLogin = router.app.$cookies.get('isLogin');
                 if (isLogin === null) {
-                    router.push('/');
+                    router.push('/Login');
                 } else if( isLogin === 'ecin520') {
                     next();
                 }
@@ -86,7 +93,7 @@ const router = new Router({
             beforeEnter: (to, from, next) => {
                 let isLogin = router.app.$cookies.get('isLogin');
                 if (isLogin === null) {
-                    router.push('/');
+                    router.push('/Login');
                 } else if( isLogin === 'ecin520') {
                     next();
                 }
@@ -99,7 +106,7 @@ const router = new Router({
             beforeEnter: (to, from, next) => {
                 let isLogin = router.app.$cookies.get('isLogin');
                 if (isLogin === null) {
-                    router.push('/');
+                    router.push('/Login');
                 } else if( isLogin === 'ecin520') {
                     next();
                 }
@@ -112,7 +119,7 @@ const router = new Router({
             beforeEnter: (to, from, next) => {
                 let isLogin = router.app.$cookies.get('isLogin');
                 if (isLogin === null) {
-                    router.push('/');
+                    router.push('/Login');
                 } else if( isLogin === 'ecin520') {
                     next();
                 }
@@ -125,7 +132,7 @@ const router = new Router({
             beforeEnter: (to, from, next) => {
                 let isLogin = router.app.$cookies.get('isLogin');
                 if (isLogin === null) {
-                    router.push('/');
+                    router.push('/Login');
                 } else if( isLogin === 'ecin520') {
                     next();
                 }
@@ -138,7 +145,7 @@ const router = new Router({
             beforeEnter: (to, from, next) => {
                 let isLogin = router.app.$cookies.get('isLogin');
                 if (isLogin === null) {
-                    router.push('/');
+                    router.push('/Login');
                 } else if( isLogin === 'ecin520') {
                     next();
                 }
@@ -151,7 +158,7 @@ const router = new Router({
             beforeEnter: (to, from, next) => {
                 let isLogin = router.app.$cookies.get('isLogin');
                 if (isLogin === null) {
-                    router.push('/');
+                    router.push('/Login');
                 } else if( isLogin === 'ecin520') {
                     next();
                 }
