@@ -90,7 +90,8 @@
                     }
                 ],
                 showStatus: false,
-                websocket: null
+                websocket: null,
+                otherId: ''
             }
         },
         methods: {
@@ -198,6 +199,8 @@
             this.nickname = this.$route.params.friendName;
             this.avatarUrl = this.$route.params.avatarUrl;
 
+            this.otherId = this.$route.params.otherId;
+
             this.$axios({
                 url: '/api/client/chat/listChatRecode',
                 method: 'post',
@@ -270,6 +273,15 @@
 
         },
         destroyed() {
+            this.$axios({
+                url: '/api/client/chat/listChatRecode',
+                method: 'post',
+                params: {
+                    'sendId': this.otherId,
+                    'receiveId': this.$cookies.get('userId'),
+                    'role': 'self'
+                }
+            });
             this.websocket.close();
         }
     }

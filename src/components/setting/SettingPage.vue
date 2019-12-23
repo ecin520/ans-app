@@ -7,12 +7,18 @@
           <mu-icon value="menu"></mu-icon>
         </mu-button>
         设置
+
       </mu-appbar>
+      <mu-tabs :color="this.$store.state.themColor" :indicator-color="this.$store.state.themColor" full-width>
+        <mu-tab>
+        </mu-tab>
+      </mu-tabs>
     </div>
+
     <scroller>
-      <mu-list style="margin-top: 48px" @change="findClick">
+      <mu-list style="margin-top: 96px" @change="findClick">
         <mu-divider></mu-divider>
-        <mu-list-item value="dynamic" style="background-color: #ffffff" button>
+        <mu-list-item value="dynamic" style="background-color: #ffffff" button @click="modifyInfo">
           <mu-list-item-action>
             <mu-icon value="track_changes"></mu-icon>
           </mu-list-item-action>
@@ -46,11 +52,11 @@
 
       <br>
       <mu-flex justify-content="center">
-        <mu-button style="width: 90%" color="success">辅助功能</mu-button>
+        <mu-button style="width: 90%;font-size: 1.3em;font-family: 'Virdwa Mono'" color="success">辅助功能</mu-button>
       </mu-flex>
       <br>
       <mu-flex justify-content="center">
-        <mu-button @click="loginOut" style="width: 90%" color="error">退出登录</mu-button>
+        <mu-button @click="loginOut" style="width: 90%;font-size: 1.3em;font-family: 'Virdwa Mono'" color="error">退出登录</mu-button>
       </mu-flex>
     </scroller>
   </div>
@@ -76,7 +82,10 @@
                 }).catch(error => {
                     console.log('注销失败');
                 });
-            }
+            },
+          modifyInfo() {
+              this.$router.push({name: 'ModifyInfo'});
+          }
         }
     }
 </script>

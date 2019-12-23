@@ -10,6 +10,8 @@ import axios from 'axios'
 import animate from 'animate.css'
 import VueScroller from 'vue-scroller'
 import cookies from 'vue-cookies' //导入
+import YDUI from 'vue-ydui'
+import 'vue-ydui/dist/ydui.px.css'
 
 import store from './store'
 
@@ -21,6 +23,7 @@ Vue.use(animate);
 Vue.use(Toast);
 Vue.use(MuseUI);
 Vue.use(common);
+Vue.use(YDUI);
 
 Vue.prototype.$axios = axios;
 Vue.config.productionTip = false;

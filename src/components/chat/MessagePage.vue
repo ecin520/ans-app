@@ -34,12 +34,12 @@
 
 
         <scroller>
-            <br><br><br><br><br>
+            <br><br><br><br><br><br>
             <mu-list>
                 <mu-list-item avatar button @click="showNotice">
                     &nbsp;
                     <mu-icon color="firebrick" value="speaker_notes"></mu-icon>
-                    <h3 style="color: firebrick">&nbsp;&nbsp;&nbsp;消息通知</h3>
+                    <p style="color: firebrick;font-size: 1.2em">&nbsp;&nbsp;&nbsp;消息通知</p>
                 </mu-list-item>
                 <mu-divider></mu-divider>
                 <div v-if="showStatus === true" class="list-item" v-for="(item, index) in messageList">

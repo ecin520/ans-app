@@ -7,7 +7,7 @@
         </mu-button>
 
         <mu-list>
-            <mu-list-item button v-for="(item, index) in user" @click="questionerClick(item)">
+            <mu-list-item button v-for="(item, index) in user" :key="index" @click="questionerClick(item)">
                 <h3>{{index+1}}&nbsp;</h3>
                 <mu-list-item-action>
                     <mu-avatar size="38">

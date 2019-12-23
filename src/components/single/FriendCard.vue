@@ -24,7 +24,7 @@
             </div>
             <br>
             <div class="content">
-                <br><br>
+                <br><br><br>
                 <a style="color: #2b2b2b;font-size: 1.1em;"><a style="color: #58b1ec">个人签名：</a>
                     {{user.sign}}</a>
                 <br> <br>
@@ -36,16 +36,19 @@
                 </mu-chip>
                 <br><br>
                 <mu-chip style="float: left" color="#a1887f">
-                    等级：{{user.rank}}
+                    等级：{{level}}
                 </mu-chip>
                 <mu-chip style="float: right" color="#40c4ff">
                     注册时间：{{user.register_time}}
                 </mu-chip>
-
                 <br><br>
+                <mu-chip style="float: left" color="#ab47bc">
+                    学历：{{education}}
+                </mu-chip>
+                <br><br><br>
                 <mu-flex justify-content="center">
                     <div style="float: left">
-                        <h4>正确率: {{(user.correct_number/user.ans_number).toFixed(3)*100}}%</h4>
+                        <p style="font-size: 1.3em">正确率: {{(user.correct_number/user.ans_number).toFixed(3)*100}}%</p>
                         <mu-circular-progress
                                 class="demo-circular-progress"
                                 mode="determinate"
@@ -59,7 +62,7 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </div>
                     <div style="float: right">
-                        <h4>排名: 80%</h4>
+                        <p style="font-size: 1.3em">排名: 80%</p>
                         <mu-circular-progress
                                 class="demo-circular-progress"
                                 mode="determinate"
@@ -74,13 +77,14 @@
             </div>
         </div>
         <div class="showNoCard" v-if="showCardFlag === '2'">
-            <mu-appbar style="width: 100%;" :color="this.$store.state.themColor">
+            <mu-appbar style="width: 100%;font-family: 'Virdwa Mono'" :color="this.$store.state.themColor">
                 <mu-button @click="back" style="float: left" icon color="white">
                     <mu-icon value="home"></mu-icon>
                 </mu-button>
             </mu-appbar>
+            <br>
             <mu-flex justify-content="center">
-                <h1 style="text-align: center;color: salmon;">查无此人</h1>
+                <p style="text-align: center;color: salmon;font-family: 'Virdwa Mono';font-size: 2em">查无此人</p>
             </mu-flex>
 
         </div>
@@ -106,7 +110,10 @@
                     good_at: '',
                     register_time: ''
                 },
-                showCardFlag: ''
+                showCardFlag: '',
+                education: '',
+                exp: '',
+                level: ''
             }
         },
         methods: {
@@ -128,7 +135,7 @@
                 });
             }
         },
-        created() {
+        mounted() {
             this.$axios({
                 url: '/api/client/user/getUserById',
                 method: 'post',
@@ -143,6 +150,13 @@
                 } else {
                     this.showCardFlag = '1'
                 }
+
+                this.exp = this.user.rank % 100;
+
+                this.level = parseInt(this.user.rank / 100);
+
+                this.education = this.getEducation(this.user.rank);
+
             }).catch(error => {
                 this.showCardFlag = '2';
                 console.log(error)
@@ -158,7 +172,7 @@
             display: block;
             width: 100%;
             height: 18vh;
-            background: #453b48;
+            background: #26c6da;
             text-align: center;
             /*color: white;*/
             /*font-size: 3em;*/

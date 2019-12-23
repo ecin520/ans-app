@@ -24,6 +24,16 @@ import DevoteQuestion from "../components/single/DevoteQuestion";
 
 import SettingPage from "../components/setting/SettingPage";
 
+import NewsPage from "../components/single/NewsPage";
+
+import MyDevote from "../components/contest/MyDevote";
+
+import ContestRecord from "../components/contest/ContestRecord";
+
+import Review from "../components/contest/Review";
+
+import ModifyInfo from "../components/setting/ModifyInfo";
+
 Vue.use(Router);
 
 const router = new Router({
@@ -36,22 +46,34 @@ const router = new Router({
                 {
                     path: '/HomePage',
                     name: 'HomePage',
-                    component: HomePage
+                    component: HomePage,
+                    meta: {
+                        keepAlive: true
+                    }
                 },
                 {
                     path: '/ChatPage',
                     name: 'ChatPage',
-                    component: ChatPage
+                    component: ChatPage,
+                    meta: {
+                        keepAlive: true
+                    }
                 },
                 {
                     path: '/ContestPage',
                     name: 'ContestPage',
-                    component: ContestPage
+                    component: ContestPage,
+                    meta: {
+                        keepAlive: true
+                    }
                 },
                 {
                     path: '/SettingPage',
                     name: 'SettingPage',
-                    component: SettingPage
+                    component: SettingPage,
+                    meta: {
+                        keepAlive: true
+                    }
                 }
             ],
             beforeEnter: (to, from, next) => {
@@ -84,6 +106,9 @@ const router = new Router({
                 } else if( isLogin === 'ecin520') {
                     next();
                 }
+            },
+            meta: {
+                keepAlive: true
             }
         },
         {
@@ -97,6 +122,9 @@ const router = new Router({
                 } else if( isLogin === 'ecin520') {
                     next();
                 }
+            },
+            meta: {
+                keepAlive: true
             }
         },
         {
@@ -110,6 +138,9 @@ const router = new Router({
                 } else if( isLogin === 'ecin520') {
                     next();
                 }
+            },
+            meta: {
+                keepAlive: true
             }
         },
         {
@@ -123,6 +154,9 @@ const router = new Router({
                 } else if( isLogin === 'ecin520') {
                     next();
                 }
+            },
+            meta: {
+                keepAlive: true
             }
         },
         {
@@ -136,6 +170,9 @@ const router = new Router({
                 } else if( isLogin === 'ecin520') {
                     next();
                 }
+            },
+            meta: {
+                keepAlive: true
             }
         },
         {
@@ -149,6 +186,9 @@ const router = new Router({
                 } else if( isLogin === 'ecin520') {
                     next();
                 }
+            },
+            meta: {
+                keepAlive: true
             }
         },
         {
@@ -162,6 +202,89 @@ const router = new Router({
                 } else if( isLogin === 'ecin520') {
                     next();
                 }
+            },
+            meta: {
+                keepAlive: true
+            }
+        },
+        {
+            path: '/NewsPage',
+            name: 'NewsPage',
+            component: NewsPage,
+            beforeEnter: (to, from, next) => {
+                let isLogin = router.app.$cookies.get('isLogin');
+                if (isLogin === null) {
+                    router.push('/Login');
+                } else if( isLogin === 'ecin520') {
+                    next();
+                }
+            },
+            meta: {
+                keepAlive: true
+            }
+        },
+        {
+            path: '/MyDevote',
+            name: 'MyDevote',
+            component: MyDevote,
+            beforeEnter: (to, from, next) => {
+                let isLogin = router.app.$cookies.get('isLogin');
+                if (isLogin === null) {
+                    router.push('/Login');
+                } else if( isLogin === 'ecin520') {
+                    next();
+                }
+            },
+            meta: {
+                keepAlive: true
+            }
+        },
+        {
+            path: '/ContestRecord',
+            name: 'ContestRecord',
+            component: ContestRecord,
+            beforeEnter: (to, from, next) => {
+                let isLogin = router.app.$cookies.get('isLogin');
+                if (isLogin === null) {
+                    router.push('/Login');
+                } else if( isLogin === 'ecin520') {
+                    next();
+                }
+            },
+            meta: {
+                keepAlive: true
+            }
+        },
+        {
+            path: '/Review',
+            name: 'Review',
+            component: Review,
+            beforeEnter: (to, from, next) => {
+                let isLogin = router.app.$cookies.get('isLogin');
+                if (isLogin === null) {
+                    router.push('/Login');
+                } else if( isLogin === 'ecin520') {
+                    next();
+                }
+            },
+            meta: {
+                keepAlive: true
+            }
+        },
+        {
+            path: '/ModifyInfo',
+            name: 'ModifyInfo',
+            component: ModifyInfo,
+            beforeEnter: (to, from, next) => {
+                let isLogin = router.app.$cookies.get('isLogin');
+                if (isLogin === null) {
+                    router.push('/Login');
+                } else if( isLogin === 'ecin520') {
+                    next();
+                }
+            },
+            meta: {
+                keepAlive: true
             }
         }
     ]

@@ -12,7 +12,7 @@
             <div class="header-bar">
                 <mu-row>
                     <mu-col span="2">
-                        <mu-badge style="float: left" :content="selfRank" circle color="secondary">
+                        <mu-badge style="float: left" :content="parseInt(selfRank/100)" circle color="secondary">
                             <mu-avatar style="float: left">
                                 <img :src="selfAvatar"/>
                             </mu-avatar>
@@ -27,7 +27,7 @@
                         </div>
                     </mu-col>
                     <mu-col span="2">
-                        <mu-badge style="float: right" :content="opponentRank" circle color="secondary">
+                        <mu-badge style="float: right" :content="parseInt(opponentRank/100)" circle color="secondary">
                             <mu-avatar style="float: right">
                                 <img :src="opponentAvatar"/>
                             </mu-avatar>
@@ -85,7 +85,7 @@
                 </mu-col>
                 <mu-col span="5">
                     <h2 style="color: #99e276">{{selfNickname}}</h2>
-                    <a style="color: white">等级：{{selfRank}}</a>
+                    <a style="color: white">等级：{{parseInt(selfRank/100)}}</a>
                 </mu-col>
             </mu-row>
         </div>
@@ -102,7 +102,7 @@
                 <mu-col span="5">
                     <div style="float: right">
                         <h2 style="color: #ff7471">{{opponentNickname}}</h2>
-                        <a style="color: white">等级：{{opponentRank}}</a>
+                        <a style="color: white">等级：{{parseInt(opponentRank/100)}}</a>
                     </div>
 
                 </mu-col>
@@ -117,7 +117,7 @@
         </div>
         <div v-if="opponentVisible === false" style="position: absolute; bottom: 20%;width: 100%;">
             <mu-flex justify-content="center">
-                <h2 style="color: white">正在寻找对手</h2>
+                <p style="color: white;font-size: 1.3em;font-family: 'Virdwa Mono'">正在寻找对手</p><br><br>
             </mu-flex>
             <mu-flex justify-content="center">
                 <mu-circular-progress :stroke-width="7" :size="76"></mu-circular-progress>
@@ -487,16 +487,16 @@
                         if (this.progress === 121 && this.currentSelfAns !== this.currentItem.item_ans && this.currentOpponentAns !== this.currentItem.item_ans) {
                             switch (this.currentItem.item_ans) {
                                 case 'A':
-                                    this.colorA = 'amber';
+                                    this.colorA = 'success';
                                     break;
                                 case 'B':
-                                    this.colorB = 'amber';
+                                    this.colorB = 'success';
                                     break;
                                 case 'C':
-                                    this.colorC = 'amber';
+                                    this.colorC = 'success';
                                     break;
                                 case 'D':
-                                    this.colorD = 'amber';
+                                    this.colorD = 'success';
                                     break;
                             }
                         }
@@ -670,11 +670,13 @@
                                                         'id': this.contestId,
                                                         'user_a': user_a,
                                                         'user_b': user_b,
-                                                        'contest_type': this.contest_type,
+                                                        'contest_type': this.type_name,
                                                         'win_id': win_id
                                                     }
-
+                                                }).then(response => {
+                                                    alert(win_id)
                                                 });
+
                                             }
 
                                             this.$router.push({

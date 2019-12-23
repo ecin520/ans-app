@@ -2,7 +2,7 @@
   <div class="contact-page">
 
     <scroller height="100%">
-      <br><br><br><br><br>
+      <br><br><br><br><br><br>
       <mu-list>
         <mu-list-item :ripple="true">
             <mu-col span="8">
@@ -15,7 +15,7 @@
                 </mu-text-field>
             </mu-col>
             <mu-col span="4">
-                <mu-button color="success" flat @click="searchFriend" >搜索好友</mu-button>
+                <mu-button color="success" style="font-family: 'Virdwa Mono'" flat @click="searchFriend" >搜索好友</mu-button>
             </mu-col>
 
         </mu-list-item>

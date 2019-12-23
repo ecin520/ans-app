@@ -27,7 +27,7 @@
 
 
         <scroller>
-            <br><br><br><br><br>
+            <br><br><br><br><br><br>
             <div class="type" v-if="active === 0">
                 <type-page></type-page>
             </div>

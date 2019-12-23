@@ -11,8 +11,6 @@
             </mu-appbar>
             <mu-tabs :color="this.$store.state.themColor" :indicator-color="this.$store.state.themColor" full-width>
                 <mu-tab>
-                    <!--                    <mu-icon value="line_style"></mu-icon>-->
-                    <!--                    Make your choice-->
                 </mu-tab>
             </mu-tabs>
 
@@ -30,8 +28,7 @@
         <scroller>
             <br><br><br><br><br><br>
 
-
-            <div style="margin: 8px;height: 250px;padding: 8px;">
+            <div style="margin: 8px;padding: 8px;">
                 <mu-row>
                     <!--                <h2>书山有路勤为径</h2>-->
                 </mu-row>
@@ -42,10 +39,16 @@
                         </mu-button>
                     </mu-col>
                     <mu-col span="6">
-                        <mu-button @click="devoteQuestion" style="width: 95%;height: 55px;" color="#26a69a">
+                        <mu-button
+                                @click="devoteQuestion"
+                                style="width: 95%;height: 55px;font-family: 'Virdwa Mono'"
+                                color="#66bb6a">
                             我要出题
                         </mu-button>
-                        <mu-button style="width: 95%;height: 55px;margin-top: 10px;" color="#26a69a">
+                        <mu-button
+                                @click="mydevote"
+                                style="width: 95%;height: 55px;margin-top: 10px;font-family: 'Virdwa Mono'"
+                                color="#66bb6a">
                             我的出题
                         </mu-button>
                     </mu-col>
@@ -56,10 +59,10 @@
                 </mu-row>
                 <mu-row>
                     <mu-col span="6">
-                        <mu-button style="width: 95%;height: 55px;" color="#cddc39">
+                        <mu-button @click="contestRecord" style="width: 95%;height: 55px;font-family: 'Virdwa Mono'" color="#81d4fa">
                             比赛记录
                         </mu-button>
-                        <mu-button style="width: 95%;height: 55px;margin-top: 10px;" color="#cddc39">
+                        <mu-button style="width: 95%;height: 55px;margin-top: 10px;font-family: 'Virdwa Mono'" color="#81d4fa">
                             我的答题统计
                         </mu-button>
                     </mu-col>
@@ -69,7 +72,30 @@
                         </mu-button>
                     </mu-col>
                 </mu-row>
-                <br><br><br>
+                <br><br>
+
+                <mu-row>
+                    <mu-col span="6">
+                        <mu-button style="width: 95%;height: 120px;" color="#7986cb">
+                            <mu-icon size="90" value="bubble_chart"></mu-icon>
+                        </mu-button>
+                    </mu-col>
+                    <mu-col span="6">
+                        <mu-button
+                                @click="review"
+                                style="width: 95%;height: 55px;font-family: 'Virdwa Mono'"
+                                color="#7986cb">
+                            我要审题
+                        </mu-button>
+                        <mu-button
+                                @click=""
+                                style="width: 95%;height: 55px;margin-top: 10px;font-family: 'Virdwa Mono'"
+                                color="#7986cb">
+                            我要提建议
+                        </mu-button>
+                    </mu-col>
+                </mu-row>
+                <br><br><br><br>
             </div>
 
         </scroller>
@@ -93,6 +119,15 @@
         methods: {
             devoteQuestion() {
                 this.$router.push({name: 'DevoteQuestion'});
+            },
+            mydevote() {
+                this.$router.push({name: 'MyDevote'});
+            },
+            contestRecord() {
+                this.$router.push({name: 'ContestRecord'});
+            },
+            review() {
+                this.$router.push({name: 'Review'});
             }
         }
     }

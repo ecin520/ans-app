@@ -48,9 +48,6 @@
         <mu-button @click="dynamicOpen = false" style="float: left" icon :color="this.$store.state.themColor">
           <mu-icon value="arrow_back"></mu-icon>
         </mu-button>
-        <p>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;好友动态</p>
       </mu-row>
 
 

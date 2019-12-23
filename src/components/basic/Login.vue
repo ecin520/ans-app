@@ -4,7 +4,7 @@
         <mu-flex class="flex-demo" justify-content="center">
             <mu-icon value="school" size="100" color="white"></mu-icon>
 <!--            <img width="110px" src="../../assets/网络拓扑.png"/>-->
-        </mu-flex><br><br>
+        </mu-flex><br>
         <mu-card style="width: 90%; max-width: 375px; margin: 5% auto;">
             <mu-card-header title="登陆"><br><br><br>
                 <mu-text-field :full-width="100" v-model="username" placeholder="username"></mu-text-field>
@@ -83,7 +83,7 @@
         position: absolute;
         width: 100%;
         height: 100%;
-        background: #453b48;
+        background: #26c6da;
     }
 
     .login-btn {

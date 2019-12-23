@@ -16,7 +16,7 @@
     </div>
     <br>
     <div class="content">
-      <br><br>
+      <br><br><br>
       <a style="color: #2b2b2b;font-size: 1.1em;"><a style="color: #58b1ec">个人签名：</a>
         {{user.sign}}</a>
       <br> <br>
@@ -34,7 +34,7 @@
         注册时间：{{user.register_time}}
       </mu-chip>
       <br><br>
-      <mu-chip style="float: left" color="#a1887f">
+      <mu-chip style="float: left" color="#ab47bc">
         学历：{{education}}
       </mu-chip>
       <br><br><br>
@@ -44,9 +44,10 @@
         <mu-row>
             <mu-linear-progress :size="11" color="success" mode="determinate" :value="exp"></mu-linear-progress>
         </mu-row>
+      <br>
       <mu-flex justify-content="center">
         <div style="float: left">
-          <h4>正确率: {{(user.correct_number/user.ans_number).toFixed(3)*100}}%</h4>
+          <p style="font-size: 1.3em">正确率: {{(user.correct_number/user.ans_number).toFixed(3)*100}}%</p>
           <mu-circular-progress
               class="demo-circular-progress"
               mode="determinate"
@@ -60,7 +61,7 @@
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </div>
         <div style="float: right">
-          <h4>排名: 80%</h4>
+          <p style="font-size: 1.3em">排名: 80%</p>
           <mu-circular-progress
               class="demo-circular-progress"
               mode="determinate"
@@ -135,7 +136,7 @@
       display: block;
       width: 100%;
       height: 18vh;
-      background: #453b48;
+      background: #26c6da;
       text-align: center;
       /*color: white;*/
       /*font-size: 3em;*/

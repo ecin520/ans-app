@@ -144,12 +144,40 @@
                 this.selfCycle = 'color: #fff176;font-size: 3em;';
                 this.opponentCycle = 'color: #fff176;font-size: 3em;';
                 this.selfColor = 'color: #fff176;font-size: 3em;';
+
+                this.$axios({
+                    url: '/api/client/user/addExperience',
+                    method: 'post',
+                    params: {
+                        'userId': this.$cookies.get('userId'),
+                        'exp': 5
+                    }
+                }).then(response => {
+                    console.log(response.data)
+                }).catch(error => {
+                    console.log(error);
+                });
+
             } else if (this.selfScore > this.opponentScore) {
                 this.header1 = '胜利';
                 this.header2 = '经验 + 10';
                 this.selfCycle = 'color: #66bb6a;font-size: 3em;';
                 this.opponentCycle = 'color: #ff7043;font-size: 3em;';
                 this.selfColor = 'color: #66bb6a;font-size: 3em;';
+
+                this.$axios({
+                    url: '/api/client/user/addExperience',
+                    method: 'post',
+                    params: {
+                        'userId': this.$cookies.get('userId'),
+                        'exp': 10
+                    }
+                }).then(response => {
+                    console.log(response.data)
+                }).catch(error => {
+                    console.log(error);
+                });
+
             } else if (this.selfScore < this.opponentScore) {
                 this.header1 = '失败';
                 this.header2 = '经验 + 0';
@@ -157,6 +185,7 @@
                 this.opponentCycle = 'color: #66bb6a;font-size: 3em;';
                 this.selfColor = 'color: #ff7043;font-size: 3em;';
             }
+
 
 
             console.log(this.questions);
